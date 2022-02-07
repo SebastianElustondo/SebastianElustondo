@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <table class="table caption-top">
+        <caption>User: {{user.name}}</caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{user.id}}</th>
+                <td>{{user.name}}</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="editUser(user.id)">Edit</button>
+                    <button type="button" class="btn btn-primary" (click)="deleteUser(user.id)">delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" (click)="redirectHome()">View user list</button>
+</div>

@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <h2>Add user</h2>
+    <form #addUserForm="ngForm" (ngSubmit)="addUser()">
+        <div class="form-group">
+            <label for="name">name:</label>
+            <input type="text" class="form-control" [(ngModel)]="user.name" name="name" required>
+        </div>
+        <button type="submit" class="btn btn-success">Create</button>
+    </form>
+    <button type="button" class="btn btn-primary" (click)="redirectHome()">View user list</button>
+</div>

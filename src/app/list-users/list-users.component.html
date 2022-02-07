@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <nav class="navbar">
+        <input class="form-control" type="text" name="firstName" [(ngModel)] = "firstName" (ngModelChange)="searchFilter()" placeholder="Enter name to search">
+    </nav>
+    <table class="table caption-top">
+        <caption>List of users</caption>
+        <thead>
+            <tr>
+                <th scope="col" (click)="sort('id')">#&nbsp;<img src="../../assets/sortIcon.png" style="width: 20px;"/></th>
+                <th scope="col" (click)="sort('name')">name&nbsp;<img src="../../assets/sortIcon.png" style="width: 20px;"/></th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList | orderBy: key: reverse | paginate: {itemsPerPage:5, currentPage:pagination};">
+                <th scope="row">{{user.id}}</th>
+                <td>{{user.name}}</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="editUser(user.id)">Edit</button>
+                    <button type="button" class="btn btn-primary" (click)="viewUser(user.id)">View</button>
+                    <button type="button" class="btn btn-primary" (click)="deleteUser(user.id)">delete</button>
+                </td>
+            </tr>
+        </tbody>
+        <pagination-controls (pageChange) = "pagination = $event"></pagination-controls>
+    </table>
+    <button type="button" class="btn btn-primary" (click)="addUser()">Add user</button>
+</div>

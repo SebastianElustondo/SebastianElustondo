@@ -12,7 +12,7 @@ Frontend, backend, database, deploy: I own the whole thing. I work with AI-assis
 - **[trazoloco.quovra.com](https://trazoloco.quovra.com)** — real-time multiplayer draw-and-guess game.
 - **[pulso.quovra.com](https://pulso.quovra.com)** — timing game with meta-progression, web + Android.
 
-More at **[quovra.com](https://quovra.com)**.
+Portfolio with playable demos and CV: **[sebastian.quovra.com](https://sebastian.quovra.com)**. Studio: **[quovra.com](https://quovra.com)**.
 
 ### Stack
 

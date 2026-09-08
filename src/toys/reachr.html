@@ -1,0 +1,76 @@
+<section class="world w-reachr" id="reachr" aria-labelledby="reachr-title">
+  <div class="stage">
+    <header class="top">
+      <div>
+        <p class="wm" aria-hidden="true">Reachr<span class="dot">.</span></p>
+        <p class="sub">Pipeline · septiembre · 3 cuentas · USD 270/mes</p>
+      </div>
+      <p class="tally">Cobranzas: <output>0</output> al día</p>
+    </header>
+    <p class="hint" id="rx-hint">Drag a lead across the board to <b>Cobrado</b> — or focus a card and press <kbd>→</kbd> / <kbd>←</kbd>.</p>
+
+    <div class="board" aria-label="Pipeline">
+      <div class="col" data-stage="lead" role="group" aria-labelledby="rx-c1">
+        <h3 id="rx-c1">Lead <span class="n">0</span></h3>
+        <ul class="cards">
+          <li class="card" tabindex="0" aria-describedby="rx-hint" data-to="Juan" data-amt="120" data-svc="el sitio web" data-chip="seguimiento: mañana">
+            <p class="biz">Barbería Hestia</p>
+            <p class="svc">sitio web</p>
+            <p class="row"><span class="amt">USD 120/mes</span><span class="chip">seguimiento: mañana</span></p>
+          </li>
+          <li class="card" tabindex="0" aria-describedby="rx-hint" data-to="Ramiro" data-amt="60" data-svc="el menú QR" data-chip="seguimiento: ayer" data-late="1">
+            <p class="biz">Café Ramos</p>
+            <p class="svc">menú QR</p>
+            <p class="row"><span class="amt">USD 60/mes</span><span class="chip">seguimiento: ayer</span></p>
+          </li>
+        </ul>
+      </div>
+      <div class="col" data-stage="contactado" role="group" aria-labelledby="rx-c2">
+        <h3 id="rx-c2">Contactado <span class="n">0</span></h3>
+        <ul class="cards">
+          <li class="card" tabindex="0" aria-describedby="rx-hint" data-to="Marta" data-amt="90" data-svc="los turnos" data-chip="seguimiento: vie 5">
+            <p class="biz">Box Norte</p>
+            <p class="svc">turnos</p>
+            <p class="row"><span class="amt">USD 90/mes</span><span class="chip">seguimiento: vie 5</span></p>
+          </li>
+        </ul>
+      </div>
+      <div class="col" data-stage="cerrado" role="group" aria-labelledby="rx-c3">
+        <h3 id="rx-c3">Cerrado <span class="n">0</span></h3>
+        <ul class="cards"></ul>
+      </div>
+      <div class="col" data-stage="cobrado" role="group" aria-labelledby="rx-c4">
+        <h3 id="rx-c4">Cobrado <span class="n">0</span></h3>
+        <ul class="cards"></ul>
+      </div>
+    </div>
+
+    <aside class="chat" aria-label="Recordatorio de cobro">
+      <div class="who">
+        <h3>Recordatorio · WhatsApp</h3>
+        <p class="to">para: —</p>
+        <p class="note">Se redacta solo cuando la cuenta pasa a Cobrado. La deuda se calcula al leer, no se guarda.</p>
+      </div>
+      <div class="thread">
+        <p class="wait">Nada que cobrar todavía. Llevá una cuenta a <b>Cobrado</b> y mirá cómo se redacta el mensaje del mes.</p>
+        <div class="bubble" hidden>
+          <span class="txt"></span><span class="caret" hidden></span>
+          <span class="meta" hidden><span class="time">10:00</span><b>✓✓</b></span>
+        </div>
+      </div>
+    </aside>
+    <p class="sr" aria-live="polite"></p>
+  </div>
+  <button type="button" class="peek">Show me how it's built</button>
+  <aside class="facts" hidden>
+    <h2 id="reachr-title">Reachr<span class="dot">.</span></h2>
+    <p>From lead to client, from client to payment. A WhatsApp-first CRM for freelancers and micro-agencies in Latin America who sell recurring services to local businesses. The part every CRM forgets is collections, and that's the part you just used. I run my own client outreach on it every day.</p>
+    <ul>
+    <li>Debt is derived, not stored: due status is computed at read time from billing day + payments. A whole billing subsystem with zero scheduled infrastructure.</li>
+    <li>The public demo-booking endpoint is defended in layers: honeypot, anti-flood caps, an atomic Postgres rate limiter, and a DB-level UNIQUE that turns the race condition into a clean 409.</li>
+    <li>Email replies are detected without Gmail OAuth: a Cloudflare Email Worker matches the sender to a lead and advances the pipeline on its own.</li>
+    </ul>
+    <p>Next.js · React · Supabase with row-level security · Paddle billing · Cloudflare Email Workers · Spanish and English.</p>
+    <p><a href="https://reachr.quovra.com" target="_blank" rel="noopener">reachr.quovra.com</a></p>
+  </aside>
+</section>

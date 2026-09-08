@@ -1,0 +1,73 @@
+.w-reachr{--paper:#FAF7F0;--ink:#1C1913;--acc:#1E7A4C;--hair:#E2DACA;--card:#FFFDF8;--mute:#776E5E;--bad:#B3402E;--pad:clamp(16px,4vw,56px);background:var(--paper);color:var(--ink);font-family:var(--instrument);font-size:15px;line-height:1.45;display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
+.w-reachr *{box-sizing:border-box}
+.w-reachr .stage{grid-column:1;min-width:0;padding:clamp(28px,4vw,56px) var(--pad) 22px}
+.w-reachr .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.w-reachr .top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px;padding-bottom:14px;border-bottom:1px solid var(--hair)}
+.w-reachr .wm{font-family:var(--fraunces);font-weight:600;font-size:clamp(36px,4.2vw,52px);line-height:1;letter-spacing:-.02em;margin:0}
+.w-reachr .dot{color:var(--acc)}
+.w-reachr .sub,.w-reachr .hint{margin:6px 0 0;color:var(--mute);font-size:14px}
+.w-reachr .hint{margin-top:14px}
+.w-reachr .hint b{color:var(--ink);font-weight:600}
+.w-reachr .hint kbd{font:inherit;font-size:12px;border:1px solid var(--hair);border-radius:3px;background:var(--card);padding:0 5px}
+.w-reachr .tally{margin:0;font-size:14px;color:var(--mute)}
+.w-reachr .tally output{display:inline-block;font-family:var(--fraunces);font-weight:600;font-size:22px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;vertical-align:-2px;margin:0 2px}
+.w-reachr .tally output.bump{animation:rx-bump .6s ease-out}
+.w-reachr .board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);margin-top:18px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity}
+.w-reachr .col{min-width:0;min-height:330px;padding:10px 10px 16px;border-left:1px solid var(--hair);scroll-snap-align:start;transition:background .15s,box-shadow .15s}
+.w-reachr .col:first-child{border-left:0}
+.w-reachr .col h3{margin:0;padding:2px 4px 8px;font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+.w-reachr .col .n{font-weight:400;color:var(--mute);font-variant-numeric:tabular-nums}
+.w-reachr .col.over{background:rgba(30,122,76,.06);box-shadow:inset 0 0 0 1px var(--acc)}
+.w-reachr .col.over h3{color:var(--acc)}
+.w-reachr .cards{list-style:none;margin:0;padding:0;min-height:60px}
+.w-reachr .col.over .cards::after{content:"";display:block;height:52px;margin-top:10px;border:1px dashed var(--acc);border-radius:6px;opacity:.55}
+.w-reachr .card{position:relative;background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:11px 12px 10px;margin-top:10px;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;box-shadow:0 1px 0 rgba(28,25,19,.05);transition:opacity .2s}
+.w-reachr .card::after{content:"⠿";position:absolute;top:9px;right:10px;font-size:12px;line-height:1;color:var(--mute);opacity:.45}
+.w-reachr .card:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.w-reachr .card p{margin:0}
+.w-reachr .card .biz{font-family:var(--fraunces);font-weight:600;font-size:17px;line-height:1.15;padding-right:16px}
+.w-reachr .card .svc{color:var(--mute);font-size:13px;margin:2px 0 9px}
+.w-reachr .card .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 8px;font-size:13px}
+.w-reachr .amt{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.w-reachr .chip{font-size:11.5px;color:var(--mute);border:1px solid var(--hair);border-radius:3px;padding:2px 6px;white-space:nowrap}
+.w-reachr .chip.late{color:var(--bad);border-color:currentColor}
+.w-reachr .chip.ok{color:var(--acc);border-color:currentColor}
+.w-reachr .card.lift{opacity:.3;border-style:dashed;box-shadow:none}
+.w-reachr.dragging,.w-reachr.dragging .card{cursor:grabbing}
+.w-reachr.dragging .board{scroll-snap-type:none}
+.w-reachr.rx-layer{display:block;position:fixed;inset:0;z-index:60;pointer-events:none;background:none}
+.w-reachr .ghost{position:fixed;left:0;top:0;margin:0;list-style:none;box-shadow:0 14px 34px -10px rgba(28,25,19,.35),0 2px 6px rgba(28,25,19,.1);transform-origin:50% 40%}
+.w-reachr .ghost.snap{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.w-reachr .chat{display:grid;grid-template-columns:minmax(0,1fr);gap:14px 28px;margin-top:22px;padding:16px 18px 18px;border:1px solid var(--hair);border-radius:8px;background:var(--card)}
+.w-reachr .chat h3{margin:0;font-size:13px;font-weight:600}
+.w-reachr .to{margin:2px 0 0;color:var(--mute);font-size:12.5px}
+.w-reachr .chat.typing .to::after{content:" · escribiendo…";color:var(--acc)}
+.w-reachr .note{margin:10px 0 0;padding-top:10px;border-top:1px solid var(--hair);color:var(--mute);font-size:12.5px;line-height:1.4}
+.w-reachr .thread{min-height:72px}
+.w-reachr .wait{margin:0;font-family:var(--fraunces);font-style:italic;font-size:15px;color:var(--mute)}
+.w-reachr .wait b{color:var(--ink);font-style:normal}
+.w-reachr .bubble{position:relative;display:inline-block;max-width:min(100%,560px);background:var(--paper);border:1px solid var(--hair);border-radius:10px 10px 10px 2px;padding:9px 12px 7px;font-size:14.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.w-reachr .caret{display:inline-block;width:2px;height:1em;background:var(--acc);vertical-align:-2px;margin-left:1px;animation:rx-blink 1s steps(1) infinite}
+.w-reachr .meta{display:flex;justify-content:flex-end;gap:6px;font-size:11px;color:var(--mute);margin-top:4px}
+.w-reachr .meta b{color:var(--acc);font-weight:600;letter-spacing:-.15em}
+.w-reachr .peek{grid-column:1;justify-self:start;margin:0 var(--pad) clamp(28px,4vw,52px);background:none;border:0;border-bottom:1px solid var(--acc);padding:2px 0 3px;font-family:var(--instrument);font-size:14px;font-weight:500;color:var(--acc);cursor:pointer;line-height:1.3}
+.w-reachr .peek::after{content:" →"}
+.w-reachr .peek:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.w-reachr .facts{grid-column:1;margin:0 var(--pad) clamp(28px,4vw,56px);padding:20px 24px 26px;background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--acc);animation:rx-drawer .55s cubic-bezier(.2,.8,.2,1) both;line-height:1.55}
+.w-reachr .facts::before{content:"Product record";display:block;font-size:12px;color:var(--mute);padding-bottom:10px;margin-bottom:16px;border-bottom:1px solid var(--hair)}
+.w-reachr .facts h2{font-family:var(--fraunces);font-weight:600;font-size:clamp(32px,3.5vw,42px);line-height:1;letter-spacing:-.02em;margin:0 0 14px}
+.w-reachr .facts p{margin:0 0 14px}
+.w-reachr .facts ul{list-style:none;margin:0 0 14px;padding:0}
+.w-reachr .facts li{position:relative;padding:11px 0 11px 18px;border-top:1px solid var(--hair);font-size:14.5px}
+.w-reachr .facts li:last-child{border-bottom:1px solid var(--hair)}
+.w-reachr .facts li::before{content:"";position:absolute;left:0;top:19px;width:7px;height:7px;border-radius:50%;background:var(--acc)}
+.w-reachr .facts p:nth-last-of-type(2){color:var(--mute);font-size:13px}
+.w-reachr .facts a{color:var(--acc);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;font-weight:500}
+@media (min-width:720px){.w-reachr .chat{grid-template-columns:230px minmax(0,1fr);align-items:start}}
+@media (min-width:1024px){.w-reachr{grid-template-columns:minmax(0,1fr) auto}.w-reachr .facts{grid-column:2;grid-row:1/3;width:380px;margin:0;align-self:stretch;border-width:0 0 0 1px;padding:clamp(28px,4vw,56px) 30px 40px}}
+html.cv .w-reachr{grid-template-columns:minmax(0,1fr)}
+html.cv .w-reachr .facts{grid-column:1;grid-row:auto;width:auto;max-width:760px;margin:clamp(28px,4vw,56px) var(--pad);border-width:1px 1px 1px 3px;padding:20px 24px 26px;animation:none}
+@keyframes rx-drawer{from{transform:translateX(36px);opacity:0;clip-path:inset(0 0 0 100%)}to{transform:none;opacity:1;clip-path:inset(0)}}
+@keyframes rx-bump{0%{color:var(--acc);transform:translateY(-3px)}}
+@keyframes rx-blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.w-reachr .facts,.w-reachr .caret,.w-reachr .tally output.bump{animation:none}.w-reachr .col,.w-reachr .card,.w-reachr .ghost.snap{transition:none}}

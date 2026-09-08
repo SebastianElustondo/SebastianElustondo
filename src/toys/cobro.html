@@ -1,0 +1,81 @@
+<section class="world w-cobro" id="cobro" aria-labelledby="cobro-title">
+  <div class="stage">
+    <div class="sheet">
+      <header class="head">
+        <p class="kick">Monthly budget · freelance, Argentina</p>
+        <h3 class="ttl">¿Cuánto <em>cobro?</em>
+          <svg class="stroke" viewBox="0 0 220 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 8C60 3 130 2 217 6"/></svg>
+        </h3>
+        <p class="lede">Your rate in dollars, your month in pesos. Move anything.</p>
+      </header>
+
+      <form class="in" autocomplete="off">
+        <div class="row">
+          <div class="top">
+            <label for="cobro-rate">Hourly rate</label>
+            <span class="val"><span class="unit">USD</span><input id="cobro-rate" type="number" min="5" max="150" step="1" value="25" inputmode="numeric"></span>
+          </div>
+          <input class="rng" id="cobro-rate-r" type="range" min="5" max="150" step="1" value="25" aria-label="Hourly rate in USD">
+        </div>
+
+        <div class="row">
+          <div class="top">
+            <label for="cobro-hours">Hours per week</label>
+            <span class="val"><output id="cobro-hours-o" for="cobro-hours">30</output><span class="unit">h</span></span>
+          </div>
+          <input class="rng" id="cobro-hours" type="range" min="5" max="60" step="1" value="30">
+        </div>
+
+        <div class="row">
+          <div class="top">
+            <label for="cobro-fact">Billable share</label>
+            <span class="val"><output id="cobro-fact-o" for="cobro-fact">60</output><span class="unit">%</span></span>
+          </div>
+          <input class="rng" id="cobro-fact" type="range" min="30" max="100" step="1" value="60">
+          <p class="note">Worked hours ≠ billable hours: proposals, admin and gaps eat the rest.</p>
+        </div>
+
+        <fieldset class="dlr">
+          <legend>Which dollar</legend>
+          <div class="seg">
+            <input type="radio" name="cobro-dolar" id="cobro-d-blue" value="blue" checked><label for="cobro-d-blue">Blue</label>
+            <input type="radio" name="cobro-dolar" id="cobro-d-mep" value="mep"><label for="cobro-d-mep">MEP</label>
+            <input type="radio" name="cobro-dolar" id="cobro-d-oficial" value="oficial"><label for="cobro-d-oficial">Oficial</label>
+            <input type="radio" name="cobro-dolar" id="cobro-d-cripto" value="cripto"><label for="cobro-d-cripto">Cripto</label>
+          </div>
+          <div class="fxrow" id="cobro-fxrow">
+            <label for="cobro-fx">Manual rate</label>
+            <span class="val"><span class="unit">1 USD =</span><input id="cobro-fx" type="number" min="1" max="99999" step="1" value="1450" inputmode="numeric"><span class="unit">ARS</span></span>
+          </div>
+          <p class="src" id="cobro-src">rates: manual defaults · checking dolarapi.com…</p>
+        </fieldset>
+      </form>
+
+      <div class="out">
+        <p class="lbl">You'd bill, per month</p>
+        <p class="big"><span class="cur">ARS</span><output id="cobro-total" for="cobro-rate-r cobro-hours cobro-fact" aria-live="polite">0</output></p>
+        <dl class="lines">
+          <div><dt>Your hour, in pesos</dt><dd>ARS <output id="cobro-hr">0</output></dd></div>
+          <div><dt>Hours billed per month</dt><dd><output id="cobro-hrs">0</output> h <span class="of">of <output id="cobro-worked">0</output> worked</span></dd></div>
+          <div><dt>Dollar used</dt><dd><output id="cobro-fxl">Blue · 1.450</output></dd></div>
+        </dl>
+        <div class="share">
+          <button type="button" class="copy" id="cobro-copy">Copy as link</button>
+          <span class="ok" id="cobro-ok" role="status"></span>
+          <input class="url" id="cobro-url" type="text" readonly hidden aria-label="Link to these numbers">
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="peek">Show me how it's built</button>
+  <aside class="facts" hidden>
+    <h2 id="cobro-title">¿Cuánto <em>cobro?</em></h2>
+    <p>The question every Argentine freelancer asks, answered honestly. Convert at the dollar you actually use, or work backwards from the life you want to the rate you need, separating worked hours from billable ones. Plus monotributo math, a project quote builder, and guides without jargon.</p>
+    <ul>
+    <li>100% client-side and dependency-free: no backend, no build step, nothing leaves the browser but one public FX call.</li>
+    <li>If the FX API is down, a manual-rate field appears and every calculator keeps working. You may have just seen that happen.</li>
+    <li>Quotes serialize into the URL, so a freelancer can send a client the exact numbers as a link.</li>
+    </ul>
+    <p><a href="https://cobro.quovra.com" target="_blank" rel="noopener">cobro.quovra.com</a></p>
+  </aside>
+</section>

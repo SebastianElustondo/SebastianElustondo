@@ -1,0 +1,36 @@
+<section class="world w-pulso" id="pulso" aria-labelledby="pulso-title">
+  <div class="stage">
+    <div class="mon">
+      <header class="top">
+        <span class="mark">pulso</span>
+        <span class="live"><i></i>monitor 01</span>
+      </header>
+      <div class="crt" tabindex="0" role="application" aria-label="pulso: press space, tap or click when the green blip is inside the red arc">
+        <canvas aria-hidden="true"></canvas>
+        <div class="over" hidden>
+          <p class="fl">flatline</p>
+          <p class="sc">0 bpm</p>
+          <button type="button" class="again">play again</button>
+        </div>
+      </div>
+      <footer class="hud">
+        <span class="k">bpm <b class="bpm">00</b></span>
+        <span class="lives" aria-label="lives">◉◉◉</span>
+        <span class="k">best <b class="best">00</b></span>
+      </footer>
+      <p class="status" aria-live="polite">esperando señal</p>
+    </div>
+    <p class="hint">tap · click · <kbd>space</kbd> when the blip crosses the red arc · every 5th arc is golden and worth 3</p>
+  </div>
+  <button type="button" class="peek">Show me how it's built</button>
+  <aside class="facts" hidden>
+    <h2 id="pulso-title">pulso</h2>
+    <p>That's the game's core loop, rebuilt in about 12 KB for this page. On pulso.quovra.com it grows into a full meta-game: a currency ("latidos"), a shop with six CRT themes, four game modes, prestige, daily missions and an arcade-style global leaderboard.</p>
+    <ul>
+      <li>Vanilla JS + Canvas, zero dependencies, no build step. The whole game ships in under 100 KB.</li>
+      <li>Global leaderboard on Cloudflare D1, same-origin, running at $0.</li>
+      <li>Wrapped with Capacitor into an Android app with rewarded ads; on the web the ad layer sleeps entirely.</li>
+    </ul>
+    <p><a href="https://pulso.quovra.com" target="_blank" rel="noopener">play the full game at pulso.quovra.com</a></p>
+  </aside>
+</section>

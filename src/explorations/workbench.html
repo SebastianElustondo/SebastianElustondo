@@ -1,0 +1,821 @@
+<!--
+DESIGN PLAN — THE WORKBENCH
+1. Palette: cutting-mat green #2F5F4C (grid rgba(215,235,220,.16)), walnut desk #3A2519 / #2E1C12, notebook paper #F3EEE1, masking tape #E9DAB3, sticky yellow #F5E27A, ballpoint ink #1E2833. Nothing cream-and-serif, nothing petrol: the frame is a self-healing mat on a dark wooden desk, lit from the top right.
+2. Type roles: Caveat = his handwriting (headline, object tags, the composed note). Courier Prime = anything typed onto tape or paper (name, credentials, bench tags, footer plate). Each product object keeps its OWN face (JetBrains Mono on the CRT, Patrick Hand in the sketchbook, Fraunces on phone/card/sheet) because those are the real products.
+3. Hero signature: the desk is real. Five products are five objects (CRT, sketchbook, phone, index card + paperclip, folded sheet + pencil) with light-from-top-right layered shadows; hover lifts them, click scrolls to the toy. Living element: the desk lamp follows Buenos Aires time (night = lamp on, CRT heartbeat glows) and a sticky note says so; the lamp's pull-chain also toggles it. The CRT runs a live ECG trace.
+4. Reading order in 5 s: tape label top-left (name, role, city) -> torn notebook page (one handwritten line + typed credentials + email/GitHub/LinkedIn) -> objects -> paper CV top-right with a curled corner (= résumé toggle, plus PDF).
+5. Contact signature: a ruled notepad. Visitor ticks what they need (remote role / fixed-scope build / just talk), writes their name on the From line, and a short note writes itself in his hand; "Send it" is a mailto: with subject and body prefilled. Honest about it: nothing is sent from the page.
+6. Bench: four half-built miniatures at the far edge of the mat, half over the wood: a phone (Nivelate), isometric cubes (Desvío), a house block (La Cuadra), a cut sheet with a fit stamp (Talle), each with a typed tape tag and a handwritten status.
+7. Footer: the front rail of the desk, bevel highlight, one drawer with a brass knob, an engraved plate with the copyright and the three links.
+8. Motion = information only: lift on hover, ECG trace, lamp state, the note being written. No scroll reveals.
+9. Left out on purpose: photos, big numbers, a stat row, pill buttons, uppercase mono labels, gradients-as-decoration, a second accent color.
+10. Résumé mode: html.cv hides the objects and lays the full CV on the mat as one big sheet.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sebastián Elustondo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;600&family=Patrick+Hand&display=swap">
+<style>
+:root{
+  --wood:#3A2519; --wood-2:#2E1C12; --wood-hi:#5A3B28;
+  --mat:#2F5F4C; --mat-2:#264E3E; --mat-line:rgba(215,235,220,.16); --mat-line-2:rgba(215,235,220,.30);
+  --paper:#F3EEE1; --paper-2:#E8E1D0; --tape:#E9DAB3; --sticky:#F5E27A;
+  --ink:#1E2833; --typed:#2B2622; --red:#C93B2E; --rule:#B7C4D6;
+  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+  --typed-f:"Courier Prime","Courier New",monospace;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --fraunces:"Fraunces",Georgia,serif;
+  --instrument:"Instrument Sans",system-ui,sans-serif;
+  --patrick:"Patrick Hand","Comic Sans MS",cursive;
+  --lift:cubic-bezier(.2,.8,.2,1);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+*{box-sizing:border-box}
+body{margin:0;background:var(--wood-2);color:var(--typed);font-family:var(--typed-f);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px dashed var(--sticky);outline-offset:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hand{font-family:var(--hand);color:var(--ink)}
+
+/* ===== wood ===== */
+.desk{
+  background:
+    repeating-linear-gradient(91deg,rgba(255,255,255,.035) 0 2px,transparent 2px 9px,rgba(0,0,0,.14) 9px 11px,transparent 11px 27px),
+    repeating-linear-gradient(89deg,rgba(0,0,0,.10) 0 1px,transparent 1px 41px),
+    linear-gradient(180deg,#42291B,var(--wood) 40%,#33200F);
+}
+
+/* ===== top bar: the back rail of the desk ===== */
+.bar{position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:0 clamp(16px,3vw,44px);height:52px;background:
+  repeating-linear-gradient(91deg,rgba(255,255,255,.03) 0 2px,transparent 2px 9px,rgba(0,0,0,.14) 9px 11px,transparent 11px 27px),
+  linear-gradient(180deg,#4A2F1F,#2A1910);box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 6px 14px rgba(0,0,0,.45)}
+.bar-name{align-self:center;text-decoration:none;font-size:14px;line-height:1;padding:7px 12px 6px;background:var(--tape);color:var(--typed);box-shadow:-2px 3px 6px -2px rgba(0,0,0,.6);transform:rotate(-.6deg);clip-path:polygon(0 12%,1.5% 0,98% 4%,100% 14%,99% 100%,2% 96%,0 86%)}
+.bar-name b{font-weight:700}
+.bar-cv{cursor:pointer;border:0;background:var(--paper);color:var(--typed);font-size:14px;line-height:1;padding:11px 16px 12px;border-radius:4px 4px 0 0;box-shadow:-3px 0 6px -3px rgba(0,0,0,.5) inset,0 -2px 0 rgba(0,0,0,.08) inset;transform:translateY(0);transition:transform .2s var(--lift),background .2s}
+.bar-cv:hover{background:#fff;transform:translateY(-2px)}
+.bar-cv .when-cv{display:none}
+html.cv .bar-cv .when-play{display:none}
+html.cv .bar-cv .when-cv{display:inline}
+
+/* ===== the mat ===== */
+.mat{position:relative;margin:0 clamp(8px,2.4vw,34px);border-radius:6px;
+  background:
+    linear-gradient(var(--mat-line-2) 1px,transparent 1px) 0 0/200px 200px,
+    linear-gradient(90deg,var(--mat-line-2) 1px,transparent 1px) 0 0/200px 200px,
+    linear-gradient(var(--mat-line) 1px,transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg,var(--mat-line) 1px,transparent 1px) 0 0/40px 40px,
+    var(--mat);
+  box-shadow:inset 0 0 0 14px var(--mat-2),inset 0 0 0 15px rgba(255,255,255,.14),-3px 4px 10px rgba(0,0,0,.5)}
+.mat::before{content:"";position:absolute;left:24px;right:24px;top:4px;height:7px;pointer-events:none;
+  background:repeating-linear-gradient(90deg,rgba(235,245,238,.55) 0 1px,transparent 1px 10px);
+  -webkit-mask:linear-gradient(#000,#000);}
+.mat::after{content:"";position:absolute;top:24px;bottom:24px;left:4px;width:7px;pointer-events:none;
+  background:repeating-linear-gradient(180deg,rgba(235,245,238,.55) 0 1px,transparent 1px 10px)}
+.scratch{position:absolute;inset:15px;pointer-events:none;border-radius:4px;overflow:hidden;
+  background:
+    linear-gradient(112deg,transparent 49.8%,rgba(255,255,255,.055) 50%,transparent 50.25%) 8% 30%/700px 700px no-repeat,
+    linear-gradient(74deg,transparent 49.85%,rgba(255,255,255,.045) 50%,transparent 50.2%) 70% 60%/900px 900px no-repeat,
+    linear-gradient(120deg,transparent 49.9%,rgba(255,255,255,.04) 50%,transparent 50.15%) 40% 80%/500px 500px no-repeat}
+
+/* ===== hero ===== */
+.hero,.desk-b{overflow-x:clip}
+.hero{padding:34px 0 0}
+.hero .mat{overflow:visible}
+.deskgrid{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:18px 14px;padding:46px 40px 60px;align-items:start;isolation:isolate}
+.light{position:absolute;inset:0;border-radius:6px;pointer-events:none;opacity:0;transition:opacity .8s;z-index:0;
+  background:radial-gradient(ellipse 720px 620px at 86% 0%,rgba(255,214,140,.34),rgba(255,214,140,.14) 42%,rgba(0,0,0,0) 68%)}
+.shade{position:absolute;inset:0;border-radius:6px;pointer-events:none;opacity:0;transition:opacity .8s;z-index:0;
+  background:radial-gradient(ellipse 1100px 900px at 80% 10%,rgba(0,0,0,0) 40%,rgba(0,0,0,.42) 100%)}
+.lamp-on .light,.lamp-on .shade{opacity:1}
+.deskgrid>*{position:relative;z-index:1}
+
+/* tape label */
+.tape-name{grid-column:1/7;grid-row:1;justify-self:start;transform:rotate(-1.2deg);margin:0;padding:10px 18px 9px;background:var(--tape);font-size:15px;line-height:1.35;max-width:560px;
+  box-shadow:-3px 5px 10px -4px rgba(0,0,0,.6);clip-path:polygon(0 10%,1% 0,99% 3%,100% 12%,99.4% 100%,1.5% 97%,0 90%)}
+.tape-name b{font-weight:700}
+.tape-name span{white-space:nowrap}
+
+/* torn notebook page */
+.note{grid-column:1/6;grid-row:2/4;transform:rotate(.8deg);margin:0;padding:30px 30px 34px;background:
+  linear-gradient(var(--rule) 1px,transparent 1px) 0 24px/100% 28px,var(--paper);
+  box-shadow:-6px 12px 22px -8px rgba(0,0,0,.55),-14px 30px 48px -20px rgba(0,0,0,.45);
+  clip-path:polygon(0 3%,3% 0,7% 2.2%,12% .4%,18% 2%,23% 0,30% 1.6%,37% .3%,44% 2%,51% .6%,58% 1.8%,65% 0,72% 1.5%,79% .5%,86% 2%,93% .2%,100% 1.8%,100% 100%,0 100%)}
+.note h1{font-family:var(--hand);font-weight:700;color:var(--ink);font-size:clamp(38px,3.4vw,50px);line-height:56px;margin:0 0 18px;letter-spacing:-.005em}
+.note h1 em{font-style:normal;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:5px;text-decoration-color:var(--red)}
+.note p{margin:0 0 14px;font-size:15px;line-height:28px}
+.note strong{font-weight:700}
+.note .reach{margin:10px 0 0;font-size:14px}
+.note .reach a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--red)}
+.note .reach a:hover{color:var(--red)}
+.note .marg{position:absolute;right:16px;bottom:10px;font-family:var(--hand);font-size:18px;color:var(--red);transform:rotate(-3deg)}
+
+/* physical objects that are links */
+.obj{display:block;text-decoration:none;color:var(--typed);transform:rotate(var(--r,0deg));}
+.thing{display:block;position:relative;transition:transform .35s var(--lift),filter .35s;
+  filter:drop-shadow(-5px 9px 7px rgba(0,0,0,.45)) drop-shadow(-12px 24px 18px rgba(0,0,0,.35))}
+.obj:hover .thing,.obj:focus-visible .thing{transform:translate(3px,-9px) scale(1.012);
+  filter:drop-shadow(-9px 18px 12px rgba(0,0,0,.5)) drop-shadow(-22px 44px 32px rgba(0,0,0,.42))}
+.tag{display:inline-block;margin-top:14px;padding:6px 14px 8px;background:var(--tape);transform:rotate(calc(var(--r,0deg) * -1 - 1deg));
+  box-shadow:-2px 4px 8px -3px rgba(0,0,0,.6);clip-path:polygon(0 12%,1.5% 0,98.5% 4%,100% 14%,99% 100%,1.5% 95%,0 85%)}
+.tag b{display:block;font-family:var(--hand);font-weight:700;color:var(--ink);font-size:23px;line-height:1.05}
+.tag small{display:block;font-size:12.5px;line-height:1.3;margin-top:3px;color:#5b534b}
+.obj:hover .tag b{color:var(--red)}
+
+/* CRT */
+.o-crt{grid-column:6/9;grid-row:1/4;align-self:end;justify-self:center;--r:-1deg;width:min(100%,330px)}
+.crt-body{display:block;padding:16px 16px 26px;border-radius:12px 12px 10px 10px;background:linear-gradient(160deg,#3a3f42,#1c2022 60%,#131617);position:relative}
+.crt-screen{display:block;position:relative;aspect-ratio:4/3;background:#06090a;border-radius:6% / 8%;overflow:hidden;box-shadow:inset 0 0 26px rgba(0,0,0,.95),inset 0 0 0 2px #000;transition:box-shadow .8s}
+.lamp-on .crt-screen{box-shadow:inset 0 0 26px rgba(0,0,0,.95),inset 0 0 0 2px #000,0 0 38px rgba(57,255,143,.22)}
+.crt-screen canvas{display:block;width:100%;height:100%}
+.crt-screen::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px),radial-gradient(ellipse at 50% 45%,transparent 60%,rgba(0,0,0,.45))}
+.crt-name{position:absolute;left:12px;bottom:9px;font-family:var(--mono);font-size:11px;color:#39ff8f;opacity:.85}
+.crt-knobs{position:absolute;right:20px;bottom:8px;display:flex;gap:7px}
+.crt-knobs i{width:9px;height:9px;border-radius:50%;background:#0c0e0f;box-shadow:inset 0 1px 1px rgba(255,255,255,.25)}
+.crt-led{position:absolute;left:20px;bottom:11px;width:6px;height:6px;border-radius:50%;background:#39ff8f;box-shadow:0 0 6px #39ff8f}
+.crt-foot{display:block;margin:0 auto;width:46%;height:16px;background:linear-gradient(180deg,#191c1e,#0f1112);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%)}
+
+/* sticky note: Buenos Aires time */
+.sticky{grid-column:7/10;grid-row:1;justify-self:center;margin-left:60px;transform:rotate(2.6deg);margin:0;width:170px;min-height:150px;padding:14px 16px;background:linear-gradient(180deg,#F8E98C,var(--sticky) 30%,#E9D25E);
+  box-shadow:-4px 8px 14px -6px rgba(0,0,0,.6);font-family:var(--hand);font-size:22px;line-height:1.1;color:var(--ink)}
+.sticky::before{content:"";position:absolute;left:0;right:0;top:0;height:22px;background:rgba(255,255,255,.28)}
+.sticky b{font-weight:700;font-size:28px;display:block;margin-bottom:6px;font-variant-numeric:tabular-nums}
+
+/* lamp */
+.lamp{grid-column:11/13;grid-row:1;justify-self:end;align-self:start;margin:-46px -20px 0 0;background:none;border:0;padding:0;cursor:pointer;width:150px;height:160px;position:relative}
+.lamp svg{display:block;width:100%;height:100%;overflow:visible}
+.lamp .glow{opacity:0;transition:opacity .8s}
+.lamp-on .lamp .glow{opacity:1}
+.lamp .chain{transform-origin:0 0;transition:transform .25s}
+.lamp:active .chain{transform:translateY(6px)}
+.lamp .lbl{position:absolute;left:-8px;bottom:-4px;font-family:var(--hand);font-size:17px;color:#E7DDC4;white-space:nowrap;transform:rotate(-2deg)}
+
+/* paper CV = résumé toggle */
+.cvwrap{grid-column:11/13;grid-row:2/5;justify-self:end;width:min(100%,230px);display:flex;flex-direction:column;align-items:flex-start}
+.cvpaper{--r:2deg;transform:rotate(var(--r));background:none;border:0;padding:0;cursor:pointer;text-align:left;width:100%;display:block}
+.cvpaper .thing{background:#FBF8F1;padding:20px 18px 24px;min-height:290px;clip-path:polygon(0 0,100% 0,100% calc(100% - 42px),calc(100% - 42px) 100%,0 100%)}
+.cvpaper .curl{position:absolute;right:0;bottom:0;width:42px;height:42px;background:linear-gradient(225deg,transparent 0 49%,#cfc7b5 50%,#ffffff 62%,#e6dfd0 100%);filter:drop-shadow(-3px -3px 3px rgba(0,0,0,.18));transition:width .3s var(--lift),height .3s var(--lift)}
+.cvpaper:hover .curl{width:58px;height:58px}
+.cvpaper .thing{position:relative}
+.cvpaper .thing::after{content:"";position:absolute;right:0;bottom:0;width:42px;height:42px;background:linear-gradient(225deg,var(--mat) 0 50%,transparent 50%);opacity:0}
+.cvpaper h2{margin:0 0 2px;font-size:15px;font-weight:700;line-height:1.2}
+.cvpaper p{margin:0;font-size:11.5px;line-height:1.45;color:#3f3934}
+.cvpaper .jobs{margin:12px 0 0;padding:0;list-style:none;font-size:11.5px;line-height:1.5}
+.cvpaper .jobs li{display:flex;justify-content:space-between;gap:8px;border-top:1px solid #e3dccb;padding:3px 0}
+.cvpaper .jobs li span{color:#6c645b}
+.cvpaper .tag b{font-size:21px}
+.cv-pdf{font-size:14px;color:#E7DDC4;text-underline-offset:3px;text-decoration-color:rgba(245,226,122,.8);margin:12px 0 0 8px;font-family:var(--hand);font-size:19px;transform:rotate(-2deg)}
+.cv-pdf:hover{color:var(--sticky)}
+
+/* phone */
+.o-phone{grid-column:9/11;grid-row:2/4;justify-self:center;align-self:end;--r:4deg;width:126px}
+.o-phone .tag{width:200px;margin-left:-40px}
+.phone{display:block;width:126px;height:246px;background:linear-gradient(160deg,#1a1817,#070605);border-radius:20px;padding:11px 7px;box-shadow:inset 0 0 0 1.5px #2a2624}
+.phone-scr{display:block;height:100%;background:#171310;border-radius:12px;padding:16px 11px 10px;color:#F1EAE0;position:relative;overflow:hidden}
+.phone-scr::before{content:"";position:absolute;left:50%;top:5px;width:34px;height:5px;border-radius:3px;background:#0a0908;transform:translateX(-50%)}
+.phone h3{font-family:var(--fraunces);font-weight:600;font-size:16px;line-height:1.05;margin:8px 0 3px;font-variation-settings:"opsz" 144}
+.phone .sub{font-family:var(--instrument);font-size:8.5px;color:#B8AE9E;margin:0 0 12px}
+.sw{display:flex;align-items:center;gap:7px;font-family:var(--instrument);font-size:10px;font-weight:500;color:#F1EAE0}
+.sw i{width:30px;height:16px;border-radius:9px;background:#4E9E6E;position:relative;box-shadow:0 0 12px rgba(78,158,110,.5)}
+.sw i::after{content:"";position:absolute;right:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#F1EAE0}
+.phone .rows{margin:12px 0 0;padding:0;list-style:none;font-family:var(--instrument);font-size:8.5px;color:#D9CFC0}
+.phone .rows li{display:flex;justify-content:space-between;border-top:1px solid #2b2521;padding:5px 0}
+.phone .rows li b{color:#F1EAE0;font-weight:500}
+.phone .rows li em{color:#4E9E6E;font-style:normal}
+
+/* sketchbook */
+.o-sketch{grid-column:6/10;grid-row:4;justify-self:center;--r:-1.6deg;width:min(100%,380px)}
+.sketch{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:9px;background:linear-gradient(180deg,#8b6d4e,#6f5439);border-radius:4px;position:relative}
+.page{position:relative;height:190px;background:radial-gradient(#cdc6b6 1px,transparent 1.3px) 0 0/14px 14px,#f7f3e9;padding:12px 12px;font-family:var(--patrick);color:#2b2620;overflow:hidden}
+.page:first-child{border-radius:3px 0 0 3px;box-shadow:inset -8px 0 12px -8px rgba(0,0,0,.25)}
+.page:last-child{border-radius:0 3px 3px 0;box-shadow:inset 8px 0 12px -8px rgba(0,0,0,.25)}
+.page h3{margin:0;font-weight:400;font-size:24px;line-height:1;color:#2b2620}
+.page .who{font-size:13px;margin:6px 0 0;line-height:1.3;color:#5a534b}
+.page .timer{position:absolute;left:12px;bottom:10px;font-size:20px;color:#d33f2b}
+.page .guess{position:absolute;right:10px;bottom:8px;font-size:12px;color:#2b5fbd;transform:rotate(-2deg)}
+.page svg{position:absolute;inset:8px 8px 8px 8px;width:calc(100% - 16px);height:calc(100% - 16px)}
+.spiral{position:absolute;left:50%;top:4px;bottom:4px;width:22px;transform:translateX(-50%);
+  background:repeating-linear-gradient(180deg,transparent 0 5px,#2a2a2a 5px 8px,#a9a9a9 8px 9.5px,#5a5a5a 9.5px 11px,transparent 11px 20px)}
+
+/* index card + paperclip */
+.o-card{grid-column:1/4;grid-row:4;justify-self:start;--r:-3deg;width:min(100%,240px);align-self:start}
+.card{display:block;width:100%;aspect-ratio:5/3;background:linear-gradient(#a3b5cf 1px,transparent 1px) 0 34px/100% 18px,#FAF7F0;position:relative;padding:8px 12px 10px;overflow:visible;border-radius:2px}
+.card::before{content:"";position:absolute;left:0;right:0;top:24px;height:1.5px;background:#d97b74}
+.card h3{font-family:var(--fraunces);font-weight:600;font-size:15px;margin:0 0 0 30px;color:#1C1913;line-height:1}
+.cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:14px}
+.col{font-family:var(--fraunces);font-style:italic;font-size:9px;color:#6b6358;line-height:1}
+.col i{display:block;height:13px;margin-top:5px;background:#EDE7DA;border:1px solid #D9D1BF;border-radius:2px}
+.col i.pay{background:#2F5D3E;border-color:#2F5D3E;transform:rotate(6deg) translate(6px,-2px);box-shadow:-3px 4px 6px -2px rgba(0,0,0,.4)}
+.col i.mv{background:#fff;border-style:dashed}
+.clip{position:absolute;left:14px;top:-14px;width:22px;height:54px}
+.clip path{fill:none;stroke:#8f959b;stroke-width:2.2;stroke-linecap:round}
+
+/* folded sheet + pencil */
+.o-sheet{grid-column:4/6;grid-row:4;justify-self:start;--r:2.2deg;width:min(100%,300px);align-self:start;margin-left:-6px}
+.sheet{display:block;position:relative;width:100%;height:190px;padding:14px 16px;color:#1C1813;
+  background:linear-gradient(90deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.09) 33.3%,rgba(255,255,255,.5) 34.2%,rgba(0,0,0,0) 38%,rgba(0,0,0,0) 62%,rgba(0,0,0,.08) 66.6%,rgba(255,255,255,.6) 67.6%,rgba(0,0,0,0) 72%),#FAF7F0}
+.sheet h3{font-family:var(--fraunces);font-weight:600;font-size:17px;margin:0 0 2px;line-height:1}
+.sheet .hint{font-family:var(--fraunces);font-style:italic;font-size:10.5px;color:#6b6358;margin:0 0 10px}
+.sheet table{border-collapse:collapse;font-family:var(--mono);font-size:10.5px;width:88%}
+.sheet td{padding:3px 0;border-top:1px solid #E3DCCB}
+.sheet td:last-child{text-align:right;font-weight:600;white-space:nowrap}
+.sheet tr.tot td{border-top:1.5px solid #1C1813;font-weight:600}
+.pencil{position:absolute;right:-58px;bottom:-14px;width:150px;height:12px;transform:rotate(-24deg);background:linear-gradient(180deg,#F2C33C,#D9A21A 55%,#B98712);border-radius:1px;filter:drop-shadow(-3px 5px 4px rgba(0,0,0,.45))}
+.pencil::before{content:"";position:absolute;left:-26px;top:0;width:26px;height:12px;background:linear-gradient(90deg,#3a3a3a 0 32%,#e9c9a0 32%);clip-path:polygon(0 50%,100% 0,100% 100%)}
+.pencil::after{content:"";position:absolute;right:-22px;top:-.5px;width:22px;height:13px;background:linear-gradient(90deg,#b7b7b7 0 45%,#e08b8f 45%);border-radius:0 3px 3px 0}
+
+/* mate */
+.mate{grid-column:10/11;grid-row:4;align-self:end;justify-self:center;position:relative;width:72px;height:72px;margin-bottom:8px}
+.mate::before{content:"";position:absolute;left:-9px;top:-6px;width:96px;height:96px;border-radius:50%;border:6px solid rgba(0,0,0,.18);filter:blur(2px)}
+.gourd{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8a5f3d,#5a3a22 60%,#3d2616);box-shadow:inset 0 0 0 4px #B9B0A0,inset 0 0 0 5px #7d7466,-4px 8px 12px -4px rgba(0,0,0,.6)}
+.gourd::after{content:"";position:absolute;inset:12px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#4e7f43,#2e5a2a 70%)}
+.bomb{position:absolute;left:44px;top:-30px;width:4px;height:66px;background:linear-gradient(90deg,#ddd,#8d8d8d);transform:rotate(22deg);border-radius:2px;box-shadow:-2px 3px 3px rgba(0,0,0,.4)}
+
+/* résumé mode */
+.cv-sheet{display:none}
+html.cv .deskgrid{display:none}
+html.cv .cv-sheet{display:block;position:relative;margin:0 auto;max-width:860px;padding:48px 52px 56px;background:#FBF8F1;transform:rotate(-.4deg);box-shadow:-8px 16px 30px -10px rgba(0,0,0,.6);top:44px;margin-bottom:84px;font-size:14.5px;line-height:1.6}
+html.cv .hero .mat{padding-bottom:1px}
+.cv-sheet h1{font-family:var(--hand);font-weight:700;color:var(--ink);font-size:44px;margin:0;line-height:1}
+.cv-sheet .role{margin:6px 0 20px;color:#5b534b}
+.cv-sheet h2{font-size:15px;font-weight:700;margin:28px 0 8px;padding-bottom:4px;border-bottom:1.5px solid var(--ink)}
+.cv-sheet ol{list-style:none;margin:0;padding:0}
+.cv-sheet li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:10px 0;border-top:1px solid #e3dccb}
+.cv-sheet li span{color:#6c645b;font-size:13px}
+.cv-sheet li p{margin:4px 0 0}
+.cv-sheet .links a{text-decoration-color:var(--red);text-underline-offset:3px}
+@media(max-width:600px){.cv-sheet li{grid-template-columns:1fr;gap:2px}html.cv .cv-sheet{padding:28px 20px 36px}}
+
+/* ===== worlds (placeholders) ===== */
+.stage{margin-top:44px;box-shadow:0 -10px 24px rgba(0,0,0,.5)}
+.world{height:720px;display:flex;align-items:center;justify-content:center;font-size:clamp(40px,7vw,96px)}
+.w-pulso{background:#06090a;color:#39ff8f;font-family:var(--mono)}
+.w-trazo{background:radial-gradient(#cdc6b6 1.2px,transparent 1.5px) 0 0/18px 18px,#f7f3e9;color:#2b2620;font-family:var(--patrick)}
+.w-quovra{background:#171310;color:#F1EAE0;font-family:var(--fraunces)}
+.w-reachr{background:#FAF7F0;color:#1C1913;font-family:var(--fraunces)}
+.w-cobro{background:#FAF7F0;color:#1C1813;font-family:var(--fraunces);border-top:1px solid #E3DCCB}
+
+/* ===== lower desk: bench + contact on the same mat ===== */
+.desk-b{padding:44px 0 0;box-shadow:0 -10px 24px rgba(0,0,0,.5)}
+.desk-b .mat{padding:40px 40px 0}
+.bench{position:relative;padding:0 0 18px}
+.bench-title{display:inline-block;margin:0 0 30px;padding:8px 18px 9px;background:var(--tape);font-family:var(--hand);font-weight:700;color:var(--ink);font-size:30px;line-height:1.05;transform:rotate(-1deg);
+  box-shadow:-3px 5px 10px -4px rgba(0,0,0,.6);clip-path:polygon(0 10%,1% 0,99% 3%,100% 12%,99.4% 100%,1.5% 97%,0 90%)}
+.bench-title small{display:block;font-family:var(--typed-f);font-weight:400;font-size:13px;color:#5b534b;margin-top:2px}
+.bench-row{list-style:none;margin:0;padding:0 0 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:26px 22px}
+.mini{display:block;text-decoration:none;color:var(--typed)}
+.mini .thing{height:120px;display:flex;align-items:flex-end;justify-content:center}
+.mini .tag{margin-top:16px;transform:rotate(-1deg)}
+.mini .tag b{font-size:22px}
+.mini .tag small{font-size:12.5px;line-height:1.35}
+.mini .tag small a{text-decoration-color:var(--red);text-underline-offset:3px}
+.mini .status{display:inline-block;margin-top:8px;font-family:var(--hand);font-size:18px;color:#E7DDC4;transform:rotate(-2deg)}
+.mini .status.live{color:var(--sticky)}
+.bench-row li:nth-child(1){transform:rotate(1.2deg)}
+.bench-row li:nth-child(2){transform:rotate(-1.4deg);margin-top:10px}
+.bench-row li:nth-child(3){transform:rotate(.8deg)}
+.bench-row li:nth-child(4){transform:rotate(-2deg);margin-top:6px}
+/* nivelate: small phone with a level that never drops */
+.m-niv{width:64px;height:118px;background:#0b0f16;border-radius:12px;padding:6px 4px;box-shadow:inset 0 0 0 1px #2a3340}
+.m-niv i{display:block;height:100%;background:#12202c;border-radius:8px;position:relative;overflow:hidden}
+.m-niv i::before{content:"";position:absolute;left:8px;right:8px;bottom:8px;height:58%;background:linear-gradient(180deg,#f6c453,#3ea87a);border-radius:3px}
+.m-niv i::after{content:"lv 7";position:absolute;left:0;right:0;top:8px;text-align:center;color:#e9eef5;font-family:var(--typed-f);font-size:10px}
+/* desvío: three isometric cubes */
+.m-des{position:relative;width:120px;height:110px}
+.cube{position:absolute;width:44px;height:44px}
+.cube i{position:absolute;left:0;top:0;width:44px;height:44px;background:#e2477a}
+.cube i:nth-child(1){transform:rotateX(60deg) rotateZ(45deg) scale(.86);top:-12px;background:#ff6b9e}
+.cube i:nth-child(2){transform:skewY(30deg) scaleX(.86);left:0;top:10px;height:44px;width:23px;background:#8a2350}
+.cube i:nth-child(3){transform:skewY(-30deg) scaleX(.86);left:22px;top:10px;height:44px;width:23px;background:#b83069}
+.cube.c1{left:30px;top:44px}.cube.c2{left:62px;top:26px}.cube.c3{left:30px;top:8px}
+.cube.c2 i:nth-child(1){background:#5ad8ff}.cube.c2 i:nth-child(2){background:#1d6f8a}.cube.c2 i:nth-child(3){background:#2a97b8}
+.cube.c3 i:nth-child(1){background:#2b2b34}.cube.c3 i:nth-child(2){background:#141419}.cube.c3 i:nth-child(3){background:#1f1f27}
+/* la cuadra: a house block */
+.m-cua{position:relative;width:96px;height:112px}
+.m-cua .wall{position:absolute;left:0;bottom:0;width:72px;height:74px;background:#d9a86b;box-shadow:inset -10px 0 0 #b8874f}
+.m-cua .side{position:absolute;left:72px;bottom:0;width:24px;height:74px;background:#9f6f3f;transform-origin:left;transform:skewY(-28deg) translateY(-6px)}
+.m-cua .roof{position:absolute;left:-6px;bottom:72px;width:84px;height:12px;background:#7a3e2b}
+.m-cua .win{position:absolute;width:14px;height:16px;background:#fff1b8;box-shadow:inset 0 0 0 2px #5a3a22;left:10px;bottom:44px}
+.m-cua .win2{left:38px}
+.m-cua .door{position:absolute;left:24px;bottom:0;width:16px;height:26px;background:#2e5a2a}
+.m-cua .bubble{position:absolute;right:-10px;top:0;font-family:var(--hand);font-size:15px;color:var(--ink);background:#fff;padding:2px 7px;border-radius:10px 10px 10px 2px;transform:rotate(-6deg)}
+/* talle: a cut sheet with a fit stamp */
+.m-tal{position:relative;width:100px;height:118px;background:#FBF8F1;padding:10px;font-family:var(--typed-f);font-size:8px;line-height:1.5;color:#6c645b;clip-path:polygon(0 0,100% 0,100% 100%,14% 100%,0 86%)}
+.m-tal::before{content:"";position:absolute;left:10px;right:10px;top:22px;height:56px;background:repeating-linear-gradient(180deg,#d9d1bf 0 1.5px,transparent 1.5px 7px)}
+.m-tal .cut{position:absolute;left:0;right:0;top:44px;border-top:1.5px dashed var(--red)}
+.m-tal .stamp{position:absolute;right:6px;bottom:8px;border:2px solid var(--red);color:var(--red);padding:2px 5px;font-size:12px;font-weight:700;transform:rotate(-12deg);opacity:.85}
+
+/* contact: the notepad */
+.contact{position:relative;padding:54px 0 70px;display:grid;grid-template-columns:minmax(0,560px) 1fr;gap:40px;align-items:start}
+.pad{position:relative;background:linear-gradient(#c9d3e0 1px,transparent 1px) 0 26px/100% 30px,#FBF8F1;padding:26px 34px 32px 44px;transform:rotate(-.6deg);
+  box-shadow:-8px 16px 28px -10px rgba(0,0,0,.6),-16px 36px 56px -24px rgba(0,0,0,.45)}
+.pad::before{content:"";position:absolute;left:0;right:0;top:0;height:22px;background:linear-gradient(180deg,#3d3a36,#1e1c1a);box-shadow:0 2px 3px rgba(0,0,0,.5)}
+.pad::after{content:"";position:absolute;left:32px;top:0;bottom:0;width:1.5px;background:#e3a39c;opacity:.7}
+.pad h2{font-family:var(--hand);font-weight:700;color:var(--ink);font-size:40px;line-height:30px;margin:24px 0 8px}
+.pad .lead{margin:0 0 14px;font-size:14px;line-height:30px}
+.picks{border:0;margin:0;padding:0}
+.picks label{display:flex;align-items:baseline;gap:12px;font-family:var(--hand);font-size:24px;line-height:30px;color:var(--ink);cursor:pointer;position:relative}
+.picks input{position:absolute;opacity:0;width:1px;height:1px}
+.picks i{flex:0 0 auto;width:20px;height:20px;border:2px solid var(--ink);border-radius:2px;position:relative;top:4px;transform:rotate(-2deg)}
+.picks i::after{content:"";position:absolute;left:5px;top:-8px;width:10px;height:20px;border-right:3px solid var(--red);border-bottom:3px solid var(--red);transform:rotate(38deg);opacity:0;transition:opacity .15s}
+.picks input:checked + i::after{opacity:1}
+.picks input:focus-visible + i{outline:2px dashed var(--red);outline-offset:3px}
+.picks label:hover i{border-color:var(--red)}
+.from{display:flex;align-items:baseline;gap:10px;margin:12px 0 4px;font-size:14px;line-height:30px}
+.from input{flex:1;min-width:0;border:0;background:transparent;font-family:var(--hand);font-size:24px;color:var(--ink);line-height:30px;padding:0;border-bottom:0}
+.from input:focus{outline:none;background:rgba(245,226,122,.35)}
+.note-out{margin:6px 0 0;min-height:150px;font-family:var(--hand);font-size:24px;line-height:30px;color:var(--ink);white-space:pre-wrap}
+.note-out .caret{display:inline-block;width:2px;height:22px;background:var(--ink);vertical-align:-3px;margin-left:1px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.send-row{display:flex;align-items:center;gap:22px;margin-top:18px;flex-wrap:wrap}
+.send{display:inline-block;text-decoration:none;font-weight:700;font-size:16px;line-height:1;padding:12px 18px;border:2.5px solid var(--red);color:var(--red);border-radius:3px;transform:rotate(-2deg);position:relative;
+  box-shadow:inset 0 0 0 1px rgba(201,59,46,.25);transition:transform .2s var(--lift),background .2s}
+.send::after{content:"";position:absolute;inset:3px;border:1px dashed rgba(201,59,46,.5);border-radius:2px}
+.send:hover{background:rgba(201,59,46,.08);transform:rotate(-2deg) translateY(-2px)}
+.plain{font-size:13px;line-height:1.5;margin:0;color:#5b534b}
+.plain a{text-decoration-color:var(--red);text-underline-offset:3px}
+.aside{padding-top:30px;color:#E7DDC4;font-size:15px;line-height:1.6;max-width:44ch;position:relative}
+.aside p{margin:0 0 14px}
+.aside .hand{color:var(--sticky);font-size:26px;line-height:1.1;transform:rotate(-1.5deg);display:inline-block}
+.pencil-b{position:absolute;left:auto;right:12%;bottom:120px;transform:rotate(-7deg);width:230px;height:14px}
+.pencil-b::before{left:-30px;width:30px;height:14px}
+.pencil-b::after{width:24px;height:15px;right:-24px}
+
+/* ===== footer: the front edge of the desk ===== */
+.foot{position:relative;margin-top:0;padding:0;background:
+  repeating-linear-gradient(91deg,rgba(255,255,255,.03) 0 2px,transparent 2px 9px,rgba(0,0,0,.14) 9px 11px,transparent 11px 27px),
+  linear-gradient(180deg,#4C3121,#33200F 30%,#24150B);box-shadow:inset 0 3px 0 rgba(255,255,255,.14),inset 0 5px 0 rgba(0,0,0,.35)}
+.foot-in{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px clamp(16px,3vw,44px) 30px;flex-wrap:wrap}
+.drawer{position:relative;flex:0 0 auto;width:min(100%,330px);height:64px;border:2px solid rgba(0,0,0,.45);border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 1px 0 rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center}
+.knob{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f0d48a,#a07a2b 65%,#5c4314);box-shadow:-2px 3px 4px rgba(0,0,0,.6)}
+.plate{font-size:13px;line-height:1.6;color:#E7DDC4;margin:0;max-width:60ch}
+.plate a{text-decoration-color:rgba(245,226,122,.8);text-underline-offset:3px}
+.plate a:hover{color:var(--sticky)}
+.floor{height:26px;background:#120a05}
+
+/* ===== responsive ===== */
+@media(max-width:1100px){
+  .note h1{font-size:38px;line-height:56px}
+  .o-crt{grid-column:6/9}
+  .tape-name{grid-column:1/6}
+}
+@media(max-width:900px){
+  .deskgrid{grid-template-columns:repeat(6,1fr);padding:40px 26px 50px;gap:26px 16px}
+  .tape-name{grid-column:1/5;grid-row:auto}
+  .lamp{grid-column:5/7;grid-row:1;margin:-40px -10px 0 0}
+  .note{grid-column:1/5;grid-row:auto}
+  .sticky{grid-column:5/7;grid-row:2;justify-self:end;align-self:start;margin-left:0}
+  .o-crt{grid-column:1/4;grid-row:auto;justify-self:start;align-self:start;width:100%}
+  .o-phone{grid-column:4/5;grid-row:auto;align-self:start}
+  .cvwrap{grid-column:5/7;grid-row:auto;justify-self:end}
+  .o-sketch{grid-column:1/5;grid-row:auto;justify-self:start}
+  .o-card{grid-column:1/3;grid-row:auto}
+  .o-sheet{grid-column:3/6;grid-row:auto;margin-left:0}
+  .mate{grid-column:6/7;grid-row:auto}
+  .bench-row{grid-template-columns:repeat(2,1fr)}
+  .contact{grid-template-columns:1fr}
+  .aside{padding-top:10px}
+}
+@media(max-width:600px){
+  .hero{padding-top:22px}
+  .deskgrid{grid-template-columns:1fr 1fr;padding:34px 18px 44px;gap:26px 14px}
+  .bar-where{display:none}
+  .bar-cv{font-size:13px;padding:10px 12px 11px;white-space:nowrap}
+  .tape-name{grid-column:1/3;font-size:13.5px;padding:8px 14px;margin-right:72px}
+  .lamp{position:absolute;right:-10px;top:-30px;width:96px;height:102px;margin:0}
+  .lamp .lbl{display:none}
+  .note{grid-column:1/3;padding:26px 20px 30px;grid-row:auto}
+  .note h1{font-size:34px;line-height:56px}
+  .note p{font-size:14px;line-height:28px}
+  .sticky{grid-column:1/3;grid-row:auto;justify-self:start;transform:rotate(-1.4deg);margin-left:0}
+  .o-crt{grid-column:1/3;grid-row:auto;width:min(100%,300px)}
+  .o-sketch{grid-column:1/3;grid-row:auto;width:100%}
+  .page{height:150px}
+  .page h3{font-size:20px}
+  .o-phone{grid-column:1/2;grid-row:auto;justify-self:start;width:112px}
+  .phone{width:112px;height:220px}
+  .o-card{grid-column:2/3;grid-row:auto;width:100%;justify-self:end;--r:-2deg}
+  .card h3{font-size:12px}.cols{margin-top:8px}.col{font-size:8px}.col i{height:10px}
+  .o-sheet{grid-column:1/3;grid-row:auto;width:min(100%,300px)}
+  .cvwrap{grid-column:1/3;grid-row:auto;justify-self:start;width:min(100%,240px)}
+  .mate{grid-column:2/3;grid-row:auto;justify-self:end;margin-bottom:0}
+  .tag b{font-size:21px}
+  .desk-b .mat{padding:30px 18px 0}
+  .bench-row{grid-template-columns:1fr 1fr;gap:26px 14px}
+  .bench-title{font-size:26px}
+  .contact{padding:44px 0 60px}
+  .pad{padding:22px 18px 26px 34px;transform:none}
+  .pad::after{left:24px}
+  .pad h2{font-size:34px}
+  .picks label,.note-out,.from input{font-size:22px}
+  .pencil-b{display:none}
+  .foot-in{padding:22px 16px 26px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .thing,.tag,.bar-cv,.send,.light,.shade,.crt-screen,.lamp .glow,.lamp .chain,.cvpaper .curl{transition:none}
+  .note-out .caret{animation:none}
+}
+</style>
+
+<header class="bar">
+  <a class="bar-name" href="#top"><b>Sebastián Elustondo</b><span class="bar-where"> · Buenos Aires</span></a>
+  <button type="button" class="bar-cv" id="cv-toggle" aria-pressed="false">
+    <span class="when-play">Hand me the résumé</span>
+    <span class="when-cv">Put it back on the desk</span>
+  </button>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO: the desk ============ -->
+<section class="hero desk" aria-labelledby="hero-title">
+  <div class="mat">
+    <div class="scratch" aria-hidden="true"></div>
+    <div class="deskgrid" id="deskgrid">
+      <div class="shade" aria-hidden="true"></div>
+      <div class="light" aria-hidden="true"></div>
+
+      <p class="tape-name"><b>Sebastián Elustondo</b> — <span>software engineer</span>, <span>Buenos Aires</span>, <span>remote (GMT-3)</span></p>
+
+      <div class="note">
+        <h1 id="hero-title">This is my desk.<br>Pick something <em>up.</em></h1>
+        <p>Six years building production platforms at <strong>Mercado Libre</strong>, <strong>Conekta</strong>, <strong>Spin</strong> and <strong>Kleva</strong>. Node.js, TypeScript, multi-tenant Postgres, AWS, payments.</p>
+        <p>After work I design, build and run whole products alone. Five of them are on this desk, working. Each one opens when you click it.</p>
+        <p class="reach">Write to me: <a href="mailto:sebastianelustondo@gmail.com">sebastianelustondo@gmail.com</a><br><a href="https://github.com/SebastianElustondo" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/sebastian-elustondo" target="_blank" rel="noopener">LinkedIn</a> · <a href="/Sebastian_Elustondo_CV.pdf">résumé (PDF)</a></p>
+        <span class="marg" aria-hidden="true">real code, all of it</span>
+      </div>
+
+      <nav style="display:contents" aria-label="Five products on the desk">
+        <a class="obj o-crt" href="#pulso">
+          <span class="thing">
+            <span class="crt-body">
+              <span class="crt-screen"><canvas class="ecg" width="300" height="225" aria-hidden="true"></canvas><span class="crt-name">pulso · 72 bpm</span></span>
+              <span class="crt-led" aria-hidden="true"></span>
+              <span class="crt-knobs" aria-hidden="true"><i></i><i></i></span>
+            </span>
+            <span class="crt-foot"></span>
+          </span>
+          <span class="tag"><b>Catch a heartbeat</b><small>Pulso · an arcade game about timing</small></span>
+        </a>
+
+        <a class="obj o-phone" href="#quovra">
+          <span class="thing">
+            <span class="phone"><span class="phone-scr">
+              <h3>Barbería<br>Pancho</h3>
+              <p class="sub">Turnos · Reseñas · Tienda</p>
+              <span class="sw"><i></i>Abierto</span>
+              <ul class="rows"><li><b>10:30</b> corte <em>seña ok</em></li><li><b>11:15</b> barba</li><li><b>12:00</b> corte + barba</li></ul>
+            </span></span>
+          </span>
+          <span class="tag"><b>Switch a barbershop's business on</b><small>Quovra · a platform for small shops</small></span>
+        </a>
+
+        <a class="obj o-sketch" href="#trazo">
+          <span class="thing">
+            <span class="sketch">
+              <span class="page">
+                <h3>TrazoLoco</h3>
+                <p class="who">draw it before the others guess it</p>
+                <span class="timer">0:52</span>
+              </span>
+              <span class="page">
+                <svg viewBox="0 0 160 120" aria-hidden="true">
+                  <g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="40" cy="82" r="24" stroke="#2b5fbd"/><circle cx="120" cy="82" r="24" stroke="#2b5fbd"/>
+                    <path d="M40 82 L66 44 L104 44 L120 82 M66 44 L84 82 L40 82 M104 44 L96 30 M80 82 L84 82" stroke="#d33f2b"/>
+                    <path d="M60 40 L74 40" stroke="#e8b82a" stroke-width="5"/><path d="M92 30 L104 28" stroke="#e8b82a" stroke-width="4"/>
+                  </g>
+                </svg>
+                <span class="guess">bicicleta?</span>
+              </span>
+              <span class="spiral" aria-hidden="true"></span>
+            </span>
+          </span>
+          <span class="tag"><b>Draw a bicycle in 80 seconds</b><small>TrazoLoco · a multiplayer drawing game</small></span>
+        </a>
+
+        <a class="obj o-card" href="#reachr">
+          <span class="thing">
+            <span class="card">
+              <svg class="clip" viewBox="0 0 22 54" aria-hidden="true"><path d="M6 50 V10 a5 5 0 0 1 10 0 V42 a3 3 0 0 1 -6 0 V16"/></svg>
+              <h3>Reachr</h3>
+              <span class="cols">
+                <span class="col">to call<i></i><i></i></span>
+                <span class="col">promised<i class="mv"></i></span>
+                <span class="col">paid<i class="pay"></i><i></i></span>
+              </span>
+            </span>
+          </span>
+          <span class="tag"><b>Collect a debt by dragging it</b><small>Reachr · a CRM for leads and collections</small></span>
+        </a>
+
+        <a class="obj o-sheet" href="#cobro">
+          <span class="thing">
+            <span class="sheet">
+              <h3>¿Cuánto cobro?</h3>
+              <p class="hint">lo que necesitás por mes, dividido en horas reales</p>
+              <table><tbody>
+                <tr><td>por mes</td><td>$ 2.400.000</td></tr>
+                <tr><td>horas facturables</td><td>112</td></tr>
+                <tr class="tot"><td>la hora</td><td>$ 21.400</td></tr>
+                <tr><td>en dólares</td><td>USD 16,3</td></tr>
+              </tbody></table>
+              <span class="pencil" aria-hidden="true"></span>
+            </span>
+          </span>
+          <span class="tag"><b>Price your hour in pesos</b><small>¿Cuánto cobro? · a rate calculator for Argentina</small></span>
+        </a>
+      </nav>
+
+      <p class="sticky" id="sticky"><b id="ba-time">--:--</b><span id="ba-text">in Buenos Aires.</span></p>
+
+      <button type="button" class="lamp" id="lamp" aria-pressed="false" aria-label="Desk lamp: switch it on or off">
+        <svg viewBox="0 0 150 160" aria-hidden="true">
+          <defs><radialGradient id="lg" cx="50%" cy="10%" r="80%"><stop offset="0" stop-color="#FFE7A8" stop-opacity=".9"/><stop offset="1" stop-color="#FFE7A8" stop-opacity="0"/></radialGradient></defs>
+          <path class="glow" d="M30 74 L120 74 L150 160 L0 160 Z" fill="url(#lg)"/>
+          <path d="M112 -10 L96 40" stroke="#2a2422" stroke-width="5" stroke-linecap="round"/>
+          <path d="M96 40 L78 52" stroke="#2a2422" stroke-width="5" stroke-linecap="round"/>
+          <path d="M40 74 Q75 34 110 74 Z" fill="#B23A2B"/>
+          <path d="M40 74 Q75 34 110 74" fill="none" stroke="#7d2418" stroke-width="2"/>
+          <ellipse cx="75" cy="74" rx="35" ry="6" fill="#F6E7BF"/>
+          <g class="chain"><path d="M108 70 V96" stroke="#cfcfcf" stroke-width="1.5" stroke-dasharray="2 2"/><circle cx="108" cy="99" r="3" fill="#cfcfcf"/></g>
+        </svg>
+        <span class="lbl" aria-hidden="true">pull the chain</span>
+      </button>
+
+      <div class="cvwrap">
+      <button type="button" class="cvpaper" data-cv="on" aria-label="Read the résumé here on the desk">
+        <span class="thing">
+          <h2>Sebastián Elustondo</h2>
+          <p>Senior software engineer · tech lead<br>Buenos Aires · remote · GMT-3</p>
+          <ul class="jobs">
+            <li>Kleva <span>2026 –</span></li>
+            <li>Mercado Libre <span>2025 – 26</span></li>
+            <li>Spin <span>2024 – 25</span></li>
+            <li>Conekta <span>2022 – 24</span></li>
+          </ul>
+          <p style="margin-top:12px">Node.js · TypeScript · PostgreSQL (RLS, multi-tenant) · AWS serverless · payments</p>
+          <span class="curl" aria-hidden="true"></span>
+        </span>
+        <span class="tag"><b>The résumé</b><small>click to read it here, on the desk</small></span>
+      </button>
+      <a class="cv-pdf" href="/Sebastian_Elustondo_CV.pdf">or just take the PDF</a>
+      </div>
+
+      <div class="mate" aria-hidden="true"><span class="gourd"></span><span class="bomb"></span></div>
+    </div>
+
+    <!-- résumé mode: the CV laid flat on the mat -->
+    <article class="cv-sheet" aria-labelledby="cv-title">
+      <h1 id="cv-title">Sebastián Elustondo</h1>
+      <p class="role">Senior software engineer · tech lead · Buenos Aires, remote (GMT-3)</p>
+      <p class="links"><a href="mailto:sebastianelustondo@gmail.com">sebastianelustondo@gmail.com</a> · <a href="https://github.com/SebastianElustondo" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/sebastian-elustondo" target="_blank" rel="noopener">LinkedIn</a> · <a href="/Sebastian_Elustondo_CV.pdf">PDF</a></p>
+      <p>Six years building and operating production web platforms. Node.js and TypeScript services, multi-tenant PostgreSQL with row-level security, serverless and event-driven AWS, payments and third-party integrations, and the whole delivery loop: API contracts, testing, CI/CD, monitoring, rollbacks. English B2+.</p>
+      <h2>Experience</h2>
+      <ol>
+        <li><span>Jun 2026 – present</span><div><b>Kleva</b> · Senior Software Engineer, then Tech Lead<p>Multi-tenant services with PostgreSQL row-level security; serverless, event-driven AWS (Lambda, SQS, CloudWatch, VPC); OAuth and webhook integrations; production readiness through testing, CI/CD, monitoring, alerting and rollbacks; mentoring.</p></div></li>
+        <li><span>May 2025 – Jun 2026</span><div><b>Mercado Libre</b> · Software Engineer<p>Production Node.js and TypeScript services for high-traffic platforms; PostgreSQL schema design and migrations; Jest unit, integration and end-to-end tests; CI/CD and reliability.</p></div></li>
+        <li><span>Sep 2024 – May 2025</span><div><b>Spin</b> · Full-Stack Developer<p>Node.js, TypeScript and React; multi-tenant PostgreSQL with RLS; OAuth and webhooks; AWS (API Gateway, S3, RDS, IAM, EC2, ECS, Secrets Manager).</p></div></li>
+        <li><span>Jan 2022 – Sep 2024</span><div><b>Conekta</b> · Full-Stack Developer<p>Fintech and payment workflows, checkout integrations through a proprietary gateway; multi-tenant data models with RLS; vendor integrations; AWS, automated testing, CI/CD, production operations.</p></div></li>
+        <li><span>2020 – 2021</span><div><b>Siemens</b> · Systems IT intern</div></li>
+      </ol>
+      <h2>Stack</h2>
+      <p>Node.js · TypeScript · Go · PostgreSQL · Redis · AWS · Cloudflare Workers · Supabase · React · Next.js · Jest · GitHub Actions · Grafana · Datadog</p>
+      <h2>Education and languages</h2>
+      <p>Superior Technician in Systems, AHK Argentina (2020–2021) · IT Technician, Instituto Politécnico Modelo (2014–2019) · Spanish native · English B2+ · German elementary</p>
+      <h2>Products I built and operate myself</h2>
+      <p>The five below, plus four on the bench.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ TOYS (placeholders) ============ -->
+<div class="stage">
+  <section class="world w-pulso" id="pulso">pulso</section>
+  <section class="world w-trazo" id="trazo">TrazoLoco</section>
+  <section class="world w-quovra" id="quovra">Quovra</section>
+  <section class="world w-reachr" id="reachr">Reachr</section>
+  <section class="world w-cobro" id="cobro">¿Cuánto cobro?</section>
+</div>
+
+<!-- ============ LOWER DESK: bench + contact ============ -->
+<div class="desk desk-b">
+  <div class="mat">
+    <div class="scratch" aria-hidden="true"></div>
+
+    <section class="bench" aria-labelledby="bench-title">
+      <h2 class="bench-title" id="bench-title">Also on the bench.<small>Four more, half built. Every one is a real codebase.</small></h2>
+      <ul class="bench-row">
+        <li>
+          <a class="mini" href="https://nivelate.quovra.com" target="_blank" rel="noopener">
+            <span class="thing"><span class="m-niv"><i></i></span></span>
+            <span class="tag"><b>Nivelate</b><small>A growth journal with game rules: six life areas, XP, levels that never drop. A PWA.</small></span>
+            <span class="status live">live, go press it</span>
+          </a>
+        </li>
+        <li>
+          <div class="mini">
+            <span class="thing"><span class="m-des"><span class="cube c1"><i></i><i></i><i></i></span><span class="cube c2"><i></i><i></i><i></i></span><span class="cube c3"><i></i><i></i><i></i></span></span></span>
+            <span class="tag"><b>Desvío</b><small>Isometric maze tower defense in Phaser. Every sprite is generated in code.</small></span>
+            <span class="status">in development</span>
+          </div>
+        </li>
+        <li>
+          <div class="mini">
+            <span class="thing"><span class="m-cua"><span class="roof"></span><span class="wall"></span><span class="side"></span><span class="win"></span><span class="win win2"></span><span class="door"></span><span class="bubble">¿viste lo del 3B?</span></span></span>
+            <span class="tag"><b>La Cuadra</b><small>A 3D boarding-house tycoon in Godot. Tenants remember, and gossip is your reputation.</small></span>
+            <span class="status">in development</span>
+          </div>
+        </li>
+        <li>
+          <div class="mini">
+            <span class="thing"><span class="m-tal">Sebastián E.<br>Senior engineer<span class="cut"></span><span class="stamp">fit 78%</span></span></span>
+            <span class="tag"><b>Talle</b><small>Paste a job posting, get your CV tailored to it with an honest fit score. Never invents experience.</small></span>
+            <span class="status">prototype</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-title">
+      <div class="pad">
+        <h2 id="contact-title">Leave me a note.</h2>
+        <p class="lead">Tick one and I'll write the rest in my hand. "Send it" opens your mail app with the note ready; nothing leaves this page on its own.</p>
+        <fieldset class="picks">
+          <legend class="sr">What do you need?</legend>
+          <label><input type="radio" name="need" value="role" checked><i></i>A remote engineer on your team</label>
+          <label><input type="radio" name="need" value="build"><i></i>A fixed-scope build, idea to production</label>
+          <label><input type="radio" name="need" value="talk"><i></i>Just to talk</label>
+        </fieldset>
+        <label class="from">From: <input id="from" type="text" placeholder="your name" autocomplete="name" maxlength="60"></label>
+        <p class="note-out" id="note-out" aria-live="polite"></p>
+        <div class="send-row">
+          <a class="send" id="send" href="mailto:sebastianelustondo@gmail.com">Send it</a>
+          <p class="plain">Or plainly: <a href="mailto:sebastianelustondo@gmail.com">sebastianelustondo@gmail.com</a><br><a href="https://github.com/SebastianElustondo" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/sebastian-elustondo" target="_blank" rel="noopener">LinkedIn</a></p>
+        </div>
+      </div>
+      <div class="aside">
+        <p class="hand">I answer within a day. Two if it's a release night.</p>
+        <p>Open to remote product-engineering roles and to short builds with a clear scope. I take a thing from idea to production and then keep it running, the same way I run the ones on this desk.</p>
+        <p>Buenos Aires, GMT-3. Overlaps with the whole US working day and the European afternoon.</p>
+      </div>
+      <span class="pencil pencil-b" aria-hidden="true"></span>
+    </section>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <p class="plate">© 2026 Sebastián Elustondo. Desk, objects and games built by hand; no template, no framework. <a href="https://github.com/SebastianElustondo" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/sebastian-elustondo" target="_blank" rel="noopener">LinkedIn</a> · <a href="/Sebastian_Elustondo_CV.pdf">résumé (PDF)</a></p>
+    <div class="drawer" aria-hidden="true"><span class="knob"></span></div>
+  </div>
+  <div class="floor"></div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var html = document.documentElement;
+
+  /* ---- résumé toggle: top bar tab + the paper on the desk ---- */
+  var cvBtn = document.getElementById('cv-toggle');
+  function setCv(on){
+    html.classList.toggle('cv', on);
+    cvBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    if (on) window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  cvBtn.addEventListener('click', function(){ setCv(!html.classList.contains('cv')); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cv="on"]'), function(b){
+    b.addEventListener('click', function(){ setCv(true); });
+  });
+
+  /* ---- Buenos Aires time drives the lamp ---- */
+  var hero = document.querySelector('.hero');
+  var lamp = document.getElementById('lamp');
+  var timeEl = document.getElementById('ba-time');
+  var textEl = document.getElementById('ba-text');
+  var manual = null; // null = follow the clock
+  function baParts(){
+    try {
+      var f = new Intl.DateTimeFormat('en-GB', {timeZone:'America/Argentina/Buenos_Aires', hour:'2-digit', minute:'2-digit', hour12:false});
+      var s = f.format(new Date());
+      return {label: s, hour: parseInt(s.slice(0,2), 10)};
+    } catch (e) {
+      var d = new Date(); var h = (d.getUTCHours() + 21) % 24;
+      return {label: (h<10?'0':'')+h+':'+(d.getUTCMinutes()<10?'0':'')+d.getUTCMinutes(), hour: h};
+    }
+  }
+  function applyLamp(on){
+    hero.classList.toggle('lamp-on', on);
+    lamp.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  function tick(){
+    var p = baParts();
+    var night = p.hour >= 19 || p.hour < 7;
+    timeEl.textContent = p.label;
+    var on = manual === null ? night : manual;
+    if (manual === null) {
+      textEl.textContent = night ? 'in Buenos Aires. Lamp’s on: this is when I build.' : 'in Buenos Aires. Daylight; I’m probably at work.';
+    } else {
+      textEl.textContent = on ? 'in Buenos Aires. You turned the lamp on.' : 'in Buenos Aires. You turned the lamp off.';
+    }
+    applyLamp(on);
+  }
+  lamp.addEventListener('click', function(){
+    manual = !hero.classList.contains('lamp-on');
+    tick();
+  });
+  tick(); setInterval(tick, 30000);
+
+  /* ---- the CRT runs a heartbeat ---- */
+  var c = document.querySelector('.ecg');
+  if (c && c.getContext) {
+    var ctx = c.getContext('2d'), W = c.width, H = c.height, t = 0;
+    function beat(p){
+      if (p < .10) return Math.sin(p/.10*Math.PI)*.08;
+      if (p < .18) return 0;
+      if (p < .21) return -(p-.18)/.03*.14;
+      if (p < .25) return -.14 + (p-.21)/.04*1.04;
+      if (p < .29) return .90 - (p-.25)/.04*1.18;
+      if (p < .32) return -.28 + (p-.29)/.03*.28;
+      if (p < .46) return 0;
+      if (p < .62) return Math.sin((p-.46)/.16*Math.PI)*.2;
+      return 0;
+    }
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      // faint grid like an oscilloscope
+      ctx.strokeStyle = 'rgba(57,255,143,.07)'; ctx.lineWidth = 1;
+      for (var gx = 0; gx < W; gx += 30){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke(); }
+      for (var gy = 0; gy < H; gy += 30){ ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke(); }
+      var mid = H*.52, amp = H*.34, head = (t % 1) * W;
+      ctx.lineWidth = 2.2; ctx.lineJoin = 'round';
+      // trail: brighter near the head, fading behind it
+      for (var seg = 0; seg < 6; seg++){
+        var a = 1 - seg/6;
+        ctx.strokeStyle = 'rgba(57,255,143,' + (a*a*.95+.05) + ')';
+        ctx.beginPath();
+        var x0 = head - seg*(W/6), x1 = head - (seg+1)*(W/6);
+        for (var x = Math.floor(x0); x > x1; x -= 2){
+          var xx = ((x % W) + W) % W;
+          var p = ((xx / W) * 1.6 + t*0.0) % 1;
+          var y = mid - beat(p) * amp;
+          if (x === Math.floor(x0)) ctx.moveTo(xx, y); else if (xx > ((((x+2) % W) + W) % W)) ctx.moveTo(xx, y); else ctx.lineTo(xx, y);
+        }
+        ctx.stroke();
+      }
+      ctx.fillStyle = '#c8ffe0'; ctx.beginPath(); ctx.arc(head, mid - beat(((head/W)*1.6)%1)*amp, 2.6, 0, 7); ctx.fill();
+      if (!reduce){ t += 0.0042; requestAnimationFrame(frame); }
+    }
+    frame();
+  }
+
+  /* ---- the notepad writes the note ---- */
+  var out = document.getElementById('note-out'), send = document.getElementById('send'), from = document.getElementById('from');
+  var notes = {
+    role:  {subject: 'A remote role for you', body: 'Hi Sebastián,\n\nI’m hiring for a remote role and I think you’d fit. Here’s the position: [link].\n\nWhen could we talk this week?'},
+    build: {subject: 'A build to quote', body: 'Hi Sebastián,\n\nI have something to build, idea to production, with a clear scope. Roughly: [what it does, for whom].\n\nWhat would you need from me to quote it?'},
+    talk:  {subject: 'Just to talk', body: 'Hi Sebastián,\n\nNo agenda. I liked the desk. Coffee, or mate, over a call sometime?'}
+  };
+  var writing = 0;
+  function compose(){
+    var v = (document.querySelector('input[name="need"]:checked') || {}).value || 'role';
+    var n = notes[v];
+    var who = from.value.trim();
+    var body = n.body + '\n\n— ' + (who || '[your name]');
+    send.href = 'mailto:sebastianelustondo@gmail.com?subject=' + encodeURIComponent(n.subject) + '&body=' + encodeURIComponent(body);
+    send.setAttribute('aria-label', 'Send it: opens your mail app with the subject “' + n.subject + '”');
+    return body;
+  }
+  function write(text){
+    var id = ++writing;
+    if (reduce){ out.textContent = text; return; }
+    out.textContent = '';
+    var caret = document.createElement('span'); caret.className = 'caret'; out.appendChild(caret);
+    var i = 0;
+    (function step(){
+      if (id !== writing) return;
+      if (i >= text.length){ return; }
+      var ch = text.charAt(i++);
+      out.insertBefore(document.createTextNode(ch), caret);
+      setTimeout(step, ch === '\n' ? 120 : (ch === ',' || ch === '.') ? 90 : 22 + Math.random()*26);
+    })();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="need"]'), function(r){
+    r.addEventListener('change', function(){ write(compose()); });
+  });
+  from.addEventListener('input', function(){
+    // name changes only rewrite the signature, no re-typing
+    var body = compose();
+    if (writing && out.textContent.indexOf('—') > -1) {
+      var caret = out.querySelector('.caret');
+      out.textContent = body; if (caret) out.appendChild(caret);
+    }
+  });
+  write(compose());
+})();
+</script>

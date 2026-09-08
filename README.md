@@ -14,7 +14,7 @@ Frontend, backend, database, deploy: I own the whole thing. I work with AI-assis
 - **[pulso.quovra.com](https://pulso.quovra.com)** — timing game with meta-progression, web + Android.
 - **[Apify Actors](https://apify.com/sebastian_elustondo)** — BCRA credit check + local-business demo site generator, published on Apify Store (pay per event).
 
-Portfolio with playable demos and CV: **[sebastian.quovra.com](https://sebastian.quovra.com)**. Studio: **[quovra.com](https://quovra.com)**.
+Portfolio with playable demos and CV: **[sebastian.quovra.com](https://sebastian.quovra.com)** — its source lives in this repo (see [DOCS.md](DOCS.md)). Studio: **[quovra.com](https://quovra.com)**.
 
 ### Stack
 

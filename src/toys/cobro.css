@@ -1,0 +1,80 @@
+.w-cobro{--cream:#FAF7F0;--panel:#fff;--ink:#1C1813;--grey:#7C7466;--line:#E3DCCB;--green:#1E7A4C;--green2:#47B37C;--soft:#EAF3EC;--ochre:#9A7B1F;background:var(--cream);color:var(--ink);font-family:var(--instrument),sans-serif;font-size:15px;line-height:1.45;padding:clamp(40px,7vw,88px) clamp(16px,5vw,64px)}
+.w-cobro *,.w-cobro *::before,.w-cobro *::after{box-sizing:border-box}
+.w-cobro .stage{max-width:1000px;margin:0 auto}
+.w-cobro .sheet{background:var(--panel);border:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);box-shadow:0 30px 60px -40px rgba(28,24,19,.3)}
+.w-cobro .head{grid-column:1/-1;padding:26px 28px 22px;border-bottom:1px solid var(--line)}
+.w-cobro .kick{margin:0 0 12px;color:var(--grey);font-size:13px}
+.w-cobro .ttl{position:relative;display:inline-block;margin:0;font:600 clamp(34px,5vw,52px)/1 var(--fraunces),Georgia,serif;letter-spacing:-.01em}
+.w-cobro .ttl em{font-style:italic;font-weight:400;color:var(--green)}
+.w-cobro .stroke{position:absolute;left:0;bottom:-11px;width:100%;height:12px;overflow:visible}
+.w-cobro .stroke path{fill:none;stroke:var(--green2);stroke-width:3;stroke-linecap:round;stroke-dasharray:230;animation:cobro-draw .9s .35s ease-out both}
+@keyframes cobro-draw{from{stroke-dashoffset:230}to{stroke-dashoffset:0}}
+.w-cobro .lede{margin:20px 0 0;color:var(--grey);max-width:44ch}
+.w-cobro .in{margin:0;padding:18px 28px 26px;border:0;border-bottom:1px solid var(--line);min-width:0}
+.w-cobro .row{padding:14px 0 16px;border-bottom:1px dashed var(--line)}
+.w-cobro .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
+.w-cobro .top label,.w-cobro legend{font-weight:500;padding:0}
+.w-cobro .val{display:inline-flex;align-items:baseline;gap:6px;font-family:var(--mono),monospace;font-variant-numeric:tabular-nums;font-size:16px}
+.w-cobro .unit{color:var(--grey);font-size:12px;font-family:var(--instrument),sans-serif}
+.w-cobro input[type=number]{width:5.4ch;padding:2px 4px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;font:inherit;color:var(--ink);text-align:right;-moz-appearance:textfield;appearance:textfield}
+.w-cobro input[type=number]::-webkit-inner-spin-button,.w-cobro input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.w-cobro input[type=number]:focus{outline:0;border-bottom-color:var(--green)}
+.w-cobro .note{margin:6px 0 0;font-size:13px;color:var(--grey)}
+.w-cobro .rng{--p:50%;display:block;width:100%;height:26px;margin:0;padding:0;background:transparent;-webkit-appearance:none;appearance:none;touch-action:none;cursor:pointer}
+.w-cobro .rng::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,var(--green) var(--p),var(--line) 0)}
+.w-cobro .rng::-moz-range-track{height:2px;background:var(--line)}
+.w-cobro .rng::-moz-range-progress{height:2px;background:var(--green)}
+.w-cobro .rng::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-8px;border-radius:50%;background:var(--panel);border:2px solid var(--green);box-shadow:0 1px 3px rgba(28,24,19,.25)}
+.w-cobro .rng::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--panel);border:2px solid var(--green)}
+.w-cobro .rng:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 5px var(--soft)}
+.w-cobro .rng:focus-visible::-moz-range-thumb{box-shadow:0 0 0 5px var(--soft)}
+.w-cobro .dlr{margin:0;padding:16px 0 0;border:0;min-width:0}
+.w-cobro .seg{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin-top:10px;border:1px solid var(--line)}
+.w-cobro .seg input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.w-cobro .seg label{padding:9px 4px;text-align:center;font-size:14px;cursor:pointer;color:var(--grey);border-left:1px solid var(--line)}
+.w-cobro .seg label:first-of-type{border-left:0}
+.w-cobro .seg input:checked+label{background:var(--soft);color:var(--green);font-weight:600;box-shadow:inset 0 -2px 0 var(--green)}
+.w-cobro .seg input:focus-visible+label{outline:2px solid var(--green2);outline-offset:-2px}
+.w-cobro .fxrow{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:14px 0 0;padding:10px 12px;background:var(--cream);border-left:3px solid var(--ochre)}
+.w-cobro .fxrow[hidden]{display:none}
+.w-cobro .fxrow label{font-size:14px}
+.w-cobro .fxrow input[type=number]{width:6.6ch}
+.w-cobro .src{margin:10px 0 0;font-size:13px;color:var(--grey)}
+.w-cobro .src.live{color:var(--green)}
+.w-cobro .src.warn{color:var(--ochre)}
+.w-cobro .lnk{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+.w-cobro .out{display:flex;flex-direction:column;padding:22px 28px 26px;background:var(--cream);min-width:0}
+.w-cobro .lbl{margin:0;color:var(--grey)}
+.w-cobro .big{display:flex;align-items:baseline;gap:10px;margin:6px 0 18px;padding-bottom:16px;border-bottom:2px solid var(--ink);font-family:var(--mono),monospace;font-variant-numeric:tabular-nums;font-size:clamp(32px,6.4vw,54px);line-height:1;letter-spacing:-.02em}
+.w-cobro .big .cur{font-size:.36em;color:var(--grey);letter-spacing:0}
+.w-cobro .lines{margin:0;display:grid;gap:10px}
+.w-cobro .lines div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px dotted var(--line)}
+.w-cobro .lines dt{color:var(--grey);font-size:14px}
+.w-cobro .lines dd{margin:0;font-family:var(--mono),monospace;font-variant-numeric:tabular-nums;font-size:15px;text-align:right}
+.w-cobro .lines .of{color:var(--grey);font-family:var(--instrument),sans-serif;font-size:13px;white-space:nowrap}
+.w-cobro .share{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:22px}
+.w-cobro .copy{font:500 14px var(--instrument),sans-serif;color:var(--green);background:var(--panel);border:1px solid var(--green);border-radius:0;padding:9px 14px;cursor:pointer;transition:background .15s,color .15s}
+.w-cobro .copy:hover,.w-cobro .copy:focus-visible{background:var(--green);color:#fff;outline:0}
+.w-cobro .ok{font-size:13px;color:var(--green);opacity:0;transition:opacity .2s}
+.w-cobro .ok.on{opacity:1}
+.w-cobro .url{width:100%;font:12px var(--mono),monospace;color:var(--grey);border:1px solid var(--line);background:var(--panel);padding:6px 8px}
+@media(min-width:820px){
+.w-cobro .sheet{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+.w-cobro .in{border-bottom:0;border-right:1px solid var(--line)}
+}
+.w-cobro .peek{display:block;margin:22px auto 0;padding:6px 2px;background:none;border:0;border-bottom:1px solid var(--line);font:italic 16px var(--fraunces),Georgia,serif;color:var(--grey);cursor:pointer}
+.w-cobro .peek:hover,.w-cobro .peek:focus-visible{color:var(--green);border-color:var(--green);outline:0}
+.w-cobro .facts{max-width:1000px;margin:28px auto 0;padding:26px 28px 30px;background:var(--panel);border:1px solid var(--line);border-top:3px double var(--ink);transform-origin:top;animation:cobro-annex .75s ease-out both}
+.w-cobro .facts[hidden]{display:none}
+@keyframes cobro-annex{0%{clip-path:inset(0 0 100% 0);transform:translateY(-16px)}100%{clip-path:inset(0);transform:none}}
+.w-cobro .facts h2{margin:0 0 12px;font:600 clamp(28px,4vw,40px)/1.05 var(--fraunces),Georgia,serif;letter-spacing:-.01em}
+.w-cobro .facts h2 em{font-weight:400;color:var(--green)}
+.w-cobro .facts p{margin:0 0 12px;max-width:68ch}
+.w-cobro .facts ul{list-style:none;margin:18px 0;padding:0;counter-reset:n;display:grid;gap:10px}
+.w-cobro .facts li{counter-increment:n;position:relative;max-width:68ch;padding:0 0 10px 30px;border-bottom:1px dotted var(--line)}
+.w-cobro .facts li::before{content:counter(n);position:absolute;left:0;top:1px;width:20px;height:20px;border:1px solid var(--green2);border-radius:50%;font:12px/18px var(--mono),monospace;color:var(--green);text-align:center}
+.w-cobro .facts a{color:var(--green);text-decoration:underline;text-decoration-color:var(--green2);text-underline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+.w-cobro .stroke path,.w-cobro .facts{animation:none}
+.w-cobro .copy,.w-cobro .ok{transition:none}
+}

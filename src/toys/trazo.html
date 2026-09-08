@@ -1,0 +1,45 @@
+<section class="world w-trazo" id="trazo" aria-labelledby="trazo-title">
+  <div class="stage">
+    <header class="tz-head">
+      <div class="tz-brand" aria-hidden="true">Trazo<b>Loco</b></div>
+      <p class="tz-prompt">Dibujá: <span class="tz-word" aria-live="polite" aria-label="palabra oculta"></span></p>
+      <div class="tz-clock" role="timer" aria-label="tiempo restante">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle class="bg" cx="20" cy="20" r="17"/><circle class="tz-ring fg" cx="20" cy="20" r="17"/></svg>
+        <span class="tz-secs">80</span><span class="tz-unit">s</span>
+      </div>
+    </header>
+
+    <div class="tz-board">
+      <canvas class="tz-canvas" aria-label="Lienzo para dibujar"></canvas>
+      <p class="tz-hint">dibujá acá — el reloj arranca con tu primer trazo</p>
+      <div class="tz-note" role="status" hidden>
+        <p></p><small></small>
+        <button type="button" class="tz-again">otra ronda</button>
+      </div>
+    </div>
+
+    <div class="tz-tools" role="toolbar" aria-label="Herramientas de dibujo">
+      <div class="tz-colors" aria-label="Colores"></div>
+      <div class="tz-sizes" aria-label="Grosor"></div>
+      <div class="tz-acts">
+        <button type="button" class="tz-eraser" aria-pressed="false">goma</button>
+        <button type="button" class="tz-undo" disabled>deshacer</button>
+        <button type="button" class="tz-clear" disabled>limpiar</button>
+        <button type="button" class="tz-listo">¡Listo!</button>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="peek">Show me how it's built</button>
+
+  <aside class="facts" hidden>
+    <h2 id="trazo-title">Trazo<span>Loco</span></h2>
+    <p>This canvas is a rebuild of the real one for this page. In the game, up to ten people share it in a room over WebSockets, no signup. Public matchmaking or a private 4-letter code; a "broken telephone" mode; chaos modifiers that force one continuous line or drawing blind; the best rounds export as vertical video.</p>
+    <ul>
+      <li>One Node + Socket.io server runs the whole state machine: turns, scoring, letter hints, profanity filtering, and a 90-second reconnect grace so a backgrounded phone rejoins its game.</li>
+      <li>Strokes travel as normalized coordinates, so a drawing looks identical on any screen — resize this page and watch yours survive.</li>
+      <li>A 1,252-word Spanish dictionary, a Discord bot that opens private rooms, and an end-to-end smoke test that plays a full two-player game over real sockets.</li>
+    </ul>
+    <p><a href="https://trazoloco.quovra.com" target="_blank" rel="noopener">play with friends at trazoloco.quovra.com</a></p>
+  </aside>
+</section>

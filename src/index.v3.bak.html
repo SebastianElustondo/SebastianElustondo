@@ -1,0 +1,101 @@
+<title>Sebastián Elustondo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Instrument+Sans:wght@400;500;600&family=Patrick+Hand&display=swap">
+<style>
+<!--@css-->
+</style>
+
+<header class="bar">
+  <a class="bar-name" href="#top">Sebastián Elustondo</a>
+  <button type="button" class="bar-cv" id="cv-toggle" aria-pressed="false">
+    <span class="when-play">Read the résumé instead</span>
+    <span class="when-cv">Back to the playground</span>
+  </button>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title">Don't read my portfolio.<br><em>Play it.</em></h1>
+    <p class="hero-who">I'm a software engineer from Buenos Aires. Six years building production platforms at <strong>Mercado Libre</strong>, <strong>Conekta</strong>, <strong>Spin</strong> and <strong>Kleva</strong>: Node.js, TypeScript, multi-tenant PostgreSQL, AWS. On my own time I design, build and run complete products, and five of them are below, real and working. Touch them.</p>
+    <nav class="hero-verbs" aria-label="The five toys">
+      <a href="#pulso">Catch a heartbeat<small>pulso · arcade</small></a>
+      <a href="#trazo">Draw a bicycle in 80 seconds<small>TrazoLoco · multiplayer</small></a>
+      <a href="#quovra">Switch a barbershop's business on<small>Quovra · SaaS platform</small></a>
+      <a href="#reachr">Collect a debt by dragging it<small>Reachr · CRM</small></a>
+      <a href="#cobro">Price your hour in pesos<small>¿Cuánto cobro? · tool</small></a>
+    </nav>
+    <p class="hero-cv">In a hurry? <button type="button" class="linklike" data-cv="on">Read the résumé</button> or <a href="/Sebastian_Elustondo_CV.pdf">download it as a PDF</a>.</p>
+  </section>
+
+  <section class="cv-head" aria-labelledby="cv-title">
+    <div class="cv-top">
+      <div>
+        <h1 id="cv-title">Sebastián Elustondo</h1>
+        <p class="cv-role">Senior software engineer · tech lead · Buenos Aires, remote (GMT-3)</p>
+      </div>
+      <p class="cv-links"><a href="mailto:sebastianelustondo@gmail.com">sebastianelustondo@gmail.com</a> · <a href="https://github.com/SebastianElustondo" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/sebastian-elustondo" target="_blank" rel="noopener">LinkedIn</a> · <a href="/Sebastian_Elustondo_CV.pdf">PDF</a></p>
+    </div>
+    <p class="cv-profile">Six years building and operating production web platforms. Node.js and TypeScript services, multi-tenant PostgreSQL with row-level security, serverless and event-driven AWS, payments and third-party integrations, and the whole delivery loop: API contracts, testing, CI/CD, monitoring, rollbacks. English B2+, professional working proficiency.</p>
+
+    <h2>Experience</h2>
+    <ol class="cv-jobs">
+      <li>
+        <div class="cv-when">Jun 2026 – present</div>
+        <div><b>Kleva</b> · Senior Software Engineer, then Tech Lead · Argentina
+          <p>Lead the design and delivery of multi-tenant services with PostgreSQL row-level security; build serverless, event-driven AWS components (Lambda, SQS, CloudWatch, VPC); own OAuth and webhook integrations and API contracts; drive production readiness through automated testing, CI/CD, monitoring, alerting and rollback practices; mentor engineers.</p></div>
+      </li>
+      <li>
+        <div class="cv-when">May 2025 – Jun 2026</div>
+        <div><b>Mercado Libre</b> · Software Engineer · Buenos Aires
+          <p>Production Node.js and TypeScript services for high-traffic platforms; PostgreSQL schema design and migrations; a strong testing culture with Jest unit, integration and end-to-end tests; CI/CD and platform reliability.</p></div>
+      </li>
+      <li>
+        <div class="cv-when">Sep 2024 – May 2025</div>
+        <div><b>Spin</b> · Full-Stack Developer · Mexico City
+          <p>Full-stack services with Node.js, TypeScript and React; multi-tenant PostgreSQL with row-level security; OAuth and webhook integrations; AWS (API Gateway, S3, RDS, IAM, EC2, ECS, Secrets Manager).</p></div>
+      </li>
+      <li>
+        <div class="cv-when">Jan 2022 – Sep 2024</div>
+        <div><b>Conekta</b> · Full-Stack Developer · Mexico City
+          <p>Fintech and payment workflows, including checkout integrations through a proprietary payment gateway; multi-tenant PostgreSQL data models and migrations with row-level security; vendor integrations with secure API contracts; AWS, automated testing, CI/CD and production operations.</p></div>
+      </li>
+      <li>
+        <div class="cv-when">2020 – 2021</div>
+        <div><b>Siemens</b> · Systems IT intern · Buenos Aires</div>
+      </li>
+    </ol>
+
+    <h2>Stack</h2>
+    <p class="cv-stack">Node.js · TypeScript · Go · PostgreSQL (schema design, migrations, RLS, multi-tenant) · Redis · AWS (Lambda, API Gateway, SQS, S3, RDS, ECS, CloudWatch, IAM, Secrets Manager) · Cloudflare Workers · Supabase · React · Next.js · Jest · GitHub Actions · Grafana · Datadog</p>
+
+    <h2>Education and languages</h2>
+    <p class="cv-stack">Superior Technician in Systems, AHK Argentina (2020–2021) · IT Technician, Instituto Politécnico Modelo (2014–2019) · Spanish native · English B2+ · German elementary</p>
+
+    <h2 class="cv-products">Products I built and operate myself</h2>
+  </section>
+
+<!--@toys-->
+
+  <section class="bench" aria-labelledby="bench-title">
+    <h2 id="bench-title">Also on the bench</h2>
+    <p>Smaller worlds, still under construction, every one a real codebase. <a href="https://nivelate.quovra.com" target="_blank" rel="noopener">Nivelate</a> is a growth journal with game spirit: six life areas, XP, 48 missions and levels that never drop, live as a PWA. <strong>Desvío</strong> is an isometric maze tower defense in Phaser where every sprite is generated in code. <strong>La Cuadra</strong> is a 3D boarding-house tycoon in Godot where tenants remember and gossip is reputation, with a sim core under 58 headless tests. <strong>Talle</strong> takes a job posting and tailors your CV to it with an honest fit score, and never invents experience.</p>
+  </section>
+
+  <section class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Building something?</h2>
+    <p>I'm open to remote product-engineering roles and short, well-scoped freelance builds. I take a product from idea to production and then keep it running, the same way I run my own.</p>
+    <a class="mail" href="mailto:sebastianelustondo@gmail.com">sebastianelustondo@gmail.com</a>
+    <p class="where">Buenos Aires, Argentina · remote · GMT-3 · <a href="https://github.com/SebastianElustondo" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/sebastian-elustondo" target="_blank" rel="noopener">LinkedIn</a> · <a href="/Sebastian_Elustondo_CV.pdf">Résumé (PDF)</a></p>
+  </section>
+
+  <footer class="foot">
+    <p>© 2026 Sebastián Elustondo. Designed and built by hand. No template, no framework, and yes, the games are real.</p>
+  </footer>
+
+</main>
+
+<script>
+<!--@js-->
+</script>

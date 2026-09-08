@@ -9,7 +9,6 @@ Backend-leaning full-stack: Node.js, TypeScript and PostgreSQL on AWS, with a fo
 - **[Quovra Platform](https://portal.quovra.com)** — multi-tenant SaaS for local businesses: bookings, reviews, store with stock & payments, reports, site builder. Cloudflare Workers + Supabase.
 - **[reachrapp.com](https://reachrapp.com)** — CRM for leads and collections, built for selling websites to local businesses.
 - **[cobro.quovra.com](https://cobro.quovra.com)** — freelance rate calculator for Argentina, live FX, client-side only.
-- **[nivelate.quovra.com](https://nivelate.quovra.com)** — PWA for personal growth with progression system.
 - **[trazoloco.quovra.com](https://trazoloco.quovra.com)** — real-time multiplayer draw-and-guess game.
 - **[pulso.quovra.com](https://pulso.quovra.com)** — timing game with meta-progression, web + Android.
 - **[Apify Actors](https://apify.com/sebastian_elustondo)** — BCRA credit check + local-business demo site generator, published on Apify Store (pay per event).

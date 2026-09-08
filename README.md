@@ -1,8 +1,8 @@
 # Sebastián Elustondo
 
-**Senior full-stack developer. I ship complete products solo — fast.**
+**Senior Software Engineer / Tech Lead. 6+ years building and operating production platforms at Mercado Libre, Conekta, Spin and Kleva. I also ship complete products solo.**
 
-Frontend, backend, database, deploy: I own the whole thing. I work with AI-assisted tooling (Claude Code) the way a senior engineer should — 3-5x faster, still accountable for every line: architecture, security, tests, deploys.
+Backend-leaning full-stack: Node.js, TypeScript and PostgreSQL on AWS, with a focus on multi-tenant architectures (Row-Level Security), payment and third-party integrations, and disciplined delivery: API contracts, tests, CI/CD, monitoring, rollbacks. I work with AI-assisted tooling (Claude Code) the way a senior engineer should: 3-5x faster, still accountable for every line.
 
 ### Live
 
@@ -18,7 +18,15 @@ Portfolio with playable demos and CV: **[sebastian.quovra.com](https://sebastian
 
 ### Stack
 
-React / Next.js · Node · TypeScript · Python · PostgreSQL / Supabase · Cloudflare Workers, Pages, R2 · Astro · Phaser
+| | |
+|---|---|
+| **Backend** | Node.js · TypeScript · Go · REST APIs and API contract design · OAuth, webhooks, payment integrations |
+| **Data** | PostgreSQL (schema design, migrations, Row-Level Security, multi-tenant) · Redis · Kafka · RabbitMQ |
+| **Cloud** | AWS: Lambda, API Gateway, SQS, S3, RDS, ECS, EC2, IAM, VPC, CloudWatch, Secrets Manager · Cloudflare: Workers, Pages, R2, D1 · Supabase · GCP |
+| **Frontend** | React · Next.js · Angular · Astro · Phaser |
+| **Quality & delivery** | Jest (unit, integration, E2E, mocks) · GitHub Actions · Jenkins · controlled releases and rollbacks |
+| **Observability** | CloudWatch · Grafana · Datadog |
+| **Also** | Python · .NET · Ruby |
 
 ### Now
 

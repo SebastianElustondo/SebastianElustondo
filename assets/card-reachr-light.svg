@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="520" height="176" viewBox="0 0 520 176" role="img" aria-label="Reachr: Pipeline for selling websites to local businesses. Drag a deal to Paid and the WhatsApp reminder writes itself. 9 phases in prod · paused until outreach says go">
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="176" viewBox="0 0 520 176" role="img" aria-label="Reachr: Pipeline for selling websites to local businesses. Drag a deal to Paid and the WhatsApp reminder writes itself. 9 phases in production · reminders write themselves">
   <style>
     .glow{animation:breathe 6s ease-in-out infinite}
     .win-trazo .glow{animation-delay:-1.3s}.win-quovra .glow{animation-delay:-2.7s}
@@ -35,6 +35,6 @@
   <text x="128" y="50" font-family="'Young Serif', Georgia, 'Times New Roman', serif" font-size="24" fill="#1E1A2A">Reachr</text>
   <text x="128" y="70" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#5C5468" letter-spacing=".4">CRM · LEADS AND COLLECTIONS</text>
   <text x="128" y="98" font-family="'Atkinson Hyperlegible', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" fill="#1E1A2A"><tspan x="128" dy="0">Pipeline for selling websites to local businesses.</tspan><tspan x="128" dy="19">Drag a deal to Paid and the WhatsApp reminder writes itself.</tspan></text>
-  <text x="128" y="144" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="600" fill="#7A4E14">9 phases in prod · paused until outreach says go</text>
+  <text x="128" y="144" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="600" fill="#7A4E14">9 phases in production · reminders write themselves</text>
   <text x="502" y="30" text-anchor="end" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#5C5468">reachrapp.com</text>
 </svg>

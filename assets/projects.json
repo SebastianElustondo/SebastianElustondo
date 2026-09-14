@@ -23,7 +23,7 @@
         "Pipeline for selling websites to local businesses.",
         "Drag a deal to Paid and the WhatsApp reminder writes itself."
       ],
-      "fact": "9 phases in prod · paused until outreach says go",
+      "fact": "9 phases in production · reminders write themselves",
       "url": "https://reachrapp.com",
       "host": "reachrapp.com"
     },

@@ -20,7 +20,7 @@ Each card is a window from the building above: a product I designed, built and s
 
 <p align="center">
 <a href="https://portal.quovra.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-quovra-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-quovra-light.svg"><img src="assets/card-quovra-dark.svg" width="49.4%" alt="Quovra Platform: multi-tenant SaaS for local businesses. 6 modules live, tenant isolation enforced in the database."></picture></a>
-<a href="https://reachrapp.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-reachr-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-reachr-light.svg"><img src="assets/card-reachr-dark.svg" width="49.4%" alt="Reachr: CRM for leads and collections. 9 phases in production."></picture></a>
+<a href="https://reachrapp.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-reachr-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-reachr-light.svg"><img src="assets/card-reachr-dark.svg" width="49.4%" alt="Reachr: CRM for leads and collections. 9 phases in production, reminders write themselves."></picture></a>
 </p>
 <p align="center">
 <a href="https://github.com/SebastianElustondo/cuanto-cobro"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-cobro-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-cobro-light.svg"><img src="assets/card-cobro-dark.svg" width="49.4%" alt="¿Cuánto cobro?: freelance rate calculator for Argentina, public repo. Tests, lint and Lighthouse in CI."></picture></a>

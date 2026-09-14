@@ -49,6 +49,7 @@ scripts/nightshift.py   paletas, glifos, helpers SVG compartidos
 scripts/banner.py       assets/banner-{dark,light}.svg   (el edificio + presentación)
 scripts/cards.py        assets/card-<slug>-{dark,light}.svg desde assets/projects.json
 scripts/stack.py        assets/stack-{dark,light}.svg   (logos del stack desde assets/stack.json)
+scripts/record.js       assets/portfolio.gif (Playwright recorre el sitio y ffmpeg arma el GIF, 720px, 8 fps)
 scripts/icons.json      logos cacheados de Simple Icons (CC0); Phaser no existe ahí y usa una placa
 ```
 

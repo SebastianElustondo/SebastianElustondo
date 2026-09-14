@@ -1,0 +1,74 @@
+{
+  "groups": [
+    {
+      "label": "Backend",
+      "items": [
+        "Node.js",
+        "TypeScript",
+        "Go",
+        "Python",
+        ".NET",
+        "Ruby"
+      ]
+    },
+    {
+      "label": "Data",
+      "items": [
+        "PostgreSQL",
+        "Supabase",
+        "Redis",
+        "Apache Kafka",
+        "RabbitMQ"
+      ]
+    },
+    {
+      "label": "Cloud",
+      "items": [
+        "Amazon Web Services",
+        "Cloudflare",
+        "Google Cloud",
+        "Vercel",
+        "Render",
+        "Docker"
+      ]
+    },
+    {
+      "label": "Frontend",
+      "items": [
+        "React",
+        "Next.js",
+        "Angular",
+        "Astro",
+        "Phaser"
+      ]
+    },
+    {
+      "label": "Delivery",
+      "items": [
+        "Jest",
+        "GitHub Actions",
+        "Jenkins",
+        "Grafana",
+        "Datadog"
+      ]
+    },
+    {
+      "label": "Tooling",
+      "items": [
+        "Git",
+        "GitHub",
+        "Claude Code"
+      ]
+    }
+  ],
+  "aliases": {
+    "Claude Code": "Claude",
+    "Amazon Web Services": "Amazon Web Services"
+  },
+  "short": {
+    "Amazon Web Services": "AWS",
+    "Apache Kafka": "Kafka",
+    "GitHub Actions": "Actions",
+    "Google Cloud": "GCP"
+  }
+}

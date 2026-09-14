@@ -6,7 +6,7 @@ import random
 from nightshift import (FONT_BODY, FONT_DISP, FONT_MONO, PALETTES, WINDOWS, dark_window, defs,
                         esc, style, window_svg, write)
 
-W, H = 1200, 486
+W, H = 1200, 470
 BX, BW = 736, 340            # main building
 COLS, FLOORS = 5, 6
 WW, WH = 44, 48              # window size
@@ -23,7 +23,7 @@ def stars(p, gid):
     out = []
     for _ in range(70):
         x, y = rnd.uniform(10, W - 10), rnd.uniform(8, 300)
-        r = rnd.choice((0.7, 0.9, 1.2, 1.5))
+        r = rnd.choice((1.0, 1.3, 1.7, 2.2))
         out.append(f'<circle class="star" cx="{x:.0f}" cy="{y:.0f}" r="{r}" fill="#F1E9DC" opacity=".8"/>')
     return f'<g opacity="{p["stars"]}">' + "".join(out) + "</g>"
 
@@ -35,7 +35,7 @@ def moon(p, gid):
             f'<circle cx="1136" cy="50" r="20" fill="#F3ECDD"/><circle cx="1145" cy="44" r="17" fill="{p["sky1"]}"/></g>')
 
 
-def neighbour(x, w, top, p, seed, lit_boost):
+def neighbour(x, w, top, p, seed, lit_boost, gid):
     rnd = random.Random(seed)
     out = [f'<rect x="{x}" y="{top}" width="{w}" height="{STREET - top}" fill="{p["plaster2"]}"/>',
            f'<rect x="{x - 4}" y="{top - 6}" width="{w + 8}" height="8" fill="{p["slab"]}"/>']
@@ -43,9 +43,12 @@ def neighbour(x, w, top, p, seed, lit_boost):
     while y + 30 < GROUND + WH:
         for cx in range(x + 16, x + w - 30, 34):
             lit = rnd.random() < 0.22
-            fill = p["lamp"] if lit else p["glass"]
-            op = (0.75 * lit_boost + 0.15) if lit else 1
-            out.append(f'<rect x="{cx}" y="{y}" width="20" height="26" fill="{fill}" opacity="{op:.2f}" stroke="{p["frame"]}" stroke-width="2"/>')
+            if lit:
+                out.append(f'<rect x="{cx - 8}" y="{y - 8}" width="36" height="42" rx="6" fill="{p["lamp"]}" opacity="{0.45 * lit_boost:.2f}" filter="url(#{gid}-blur)"/>')
+                out.append(f'<rect x="{cx}" y="{y}" width="20" height="26" fill="{p["lamp"]}" opacity="{0.75 * lit_boost + 0.2:.2f}" stroke="{p["frame"]}" stroke-width="2"/>')
+                out.append(f'<rect x="{cx + 4}" y="{y + 4}" width="12" height="18" fill="#FFF1D6" opacity="{0.35 * lit_boost:.2f}"/>')
+            else:
+                out.append(f'<rect x="{cx}" y="{y}" width="20" height="26" fill="{p["glass"]}" stroke="{p["frame"]}" stroke-width="2"/>')
         y += 44
     return "".join(out)
 
@@ -119,8 +122,8 @@ def banner(theme):
   {style()}{defs(gid, p)}
   <rect width="{W}" height="{H}" fill="url(#{gid}-sky)"/>
   {stars(p, gid)}{moon(p, gid)}
-  {neighbour(624, 100, 170, p, 7, p["lit_boost"])}
-  {neighbour(1088, 104, 120, p, 11, p["lit_boost"])}
+  {neighbour(624, 100, 170, p, 7, p["lit_boost"], gid)}
+  {neighbour(1088, 104, 120, p, 11, p["lit_boost"], gid)}
   {building(p, gid, theme)}
   {street(p, gid)}
   {text(p, theme)}

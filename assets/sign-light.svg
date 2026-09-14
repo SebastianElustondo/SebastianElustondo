@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="150" viewBox="0 0 1000 150" role="img" aria-label="Now: open to remote full-time roles. Argentina, GMT-3, full overlap with US hours.">
+  
+  <defs>
+    <linearGradient id="gl-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6FA8DC"/><stop offset=".62" stop-color="#BDD6EA"/><stop offset="1" stop-color="#E6ECF0"/>
+    </linearGradient>
+    <linearGradient id="gl-plaster" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#DCD2C4"/><stop offset="1" stop-color="#C6BAAA"/>
+    </linearGradient>
+    <filter id="gl-blur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="gl-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <rect x="1" y="1" width="998" height="148" rx="8" fill="url(#gl-plaster)" stroke="#9E9081" stroke-width="2"/>
+  <rect x="1" y="128" width="998" height="20" rx="6" fill="#B9B0A3"/>
+  <rect x="1" y="128" width="998" height="3" fill="#8B8073"/>
+  <ellipse cx="500" cy="34" rx="170" ry="46" fill="#B8792A" opacity="0.16" filter="url(#gl-blur)"/>
+  <rect x="486" y="6" width="28" height="7" fill="#B8792A"/>
+  <rect x="470" y="30" width="60" height="4" fill="#5C5148" opacity=".5"/>
+  <text x="500" y="76" text-anchor="middle" font-family="'Young Serif', Georgia, 'Times New Roman', serif" font-size="30" fill="#1E1A2A">Open to remote full-time roles</text>
+  <text x="500" y="104" text-anchor="middle" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13.5" fill="#7A4E14" letter-spacing=".6">ARGENTINA · GMT-3 · FULL OVERLAP WITH US HOURS</text>
+  <circle cx="60" cy="138" r="1.6" fill="#9E958A"/><circle cx="940" cy="138" r="1.6" fill="#9E958A"/>
+</svg>

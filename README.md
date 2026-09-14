@@ -14,27 +14,25 @@ Backend-leaning full-stack: Node.js, TypeScript and PostgreSQL on AWS, with a fo
 
 <sub>The windows open. That's the whole portfolio in 22 seconds; the real thing is at <a href="https://sebastian.quovra.com">sebastian.quovra.com</a>.</sub>
 
-### Live
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/placard-live-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/placard-live-light.svg"><img src="assets/placard-live-dark.svg" width="100%" alt="Live: five lit windows, one per product"></picture>
 
 Each card is a window from the building above: a product I designed, built and still run.
 
-<table>
-<tr>
-<td width="50%"><a href="https://portal.quovra.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-quovra-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-quovra-light.svg"><img src="assets/card-quovra-dark.svg" width="100%" alt="Quovra Platform: multi-tenant SaaS for local businesses. 6 modules live, tenant isolation enforced in the database."></picture></a></td>
-<td width="50%"><a href="https://reachrapp.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-reachr-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-reachr-light.svg"><img src="assets/card-reachr-dark.svg" width="100%" alt="Reachr: CRM for leads and collections. 9 phases in production."></picture></a></td>
-</tr>
-<tr>
-<td width="50%"><a href="https://github.com/SebastianElustondo/cuanto-cobro"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-cobro-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-cobro-light.svg"><img src="assets/card-cobro-dark.svg" width="100%" alt="¿Cuánto cobro?: freelance rate calculator for Argentina, public repo. Tests, lint and Lighthouse in CI."></picture></a></td>
-<td width="50%"><a href="https://trazoloco.quovra.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-trazoloco-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-trazoloco-light.svg"><img src="assets/card-trazoloco-dark.svg" width="100%" alt="TrazoLoco: multiplayer draw-and-guess in Spanish. About 250 players a month, 29% arrive through AI assistants."></picture></a></td>
-</tr>
-<tr>
-<td width="50%"><a href="https://pulso.quovra.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-pulso-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-pulso-light.svg"><img src="assets/card-pulso-dark.svg" width="100%" alt="Pulso: timing arcade game with meta-progression, web and Android."></picture></a></td>
-<td width="50%"><a href="https://apify.com/sebastian_elustondo"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-apify-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-apify-light.svg"><img src="assets/card-apify-dark.svg" width="100%" alt="Apify Actors: BCRA credit check and demo website generator, 2 Actors published on Apify Store, pay per event."></picture></a></td>
-</tr>
-</table>
+<p align="center">
+<a href="https://portal.quovra.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-quovra-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-quovra-light.svg"><img src="assets/card-quovra-dark.svg" width="49.4%" alt="Quovra Platform: multi-tenant SaaS for local businesses. 6 modules live, tenant isolation enforced in the database."></picture></a>
+<a href="https://reachrapp.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-reachr-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-reachr-light.svg"><img src="assets/card-reachr-dark.svg" width="49.4%" alt="Reachr: CRM for leads and collections. 9 phases in production."></picture></a>
+</p>
+<p align="center">
+<a href="https://github.com/SebastianElustondo/cuanto-cobro"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-cobro-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-cobro-light.svg"><img src="assets/card-cobro-dark.svg" width="49.4%" alt="¿Cuánto cobro?: freelance rate calculator for Argentina, public repo. Tests, lint and Lighthouse in CI."></picture></a>
+<a href="https://trazoloco.quovra.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-trazoloco-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-trazoloco-light.svg"><img src="assets/card-trazoloco-dark.svg" width="49.4%" alt="TrazoLoco: multiplayer draw-and-guess in Spanish. About 250 players a month, 29% arrive through AI assistants."></picture></a>
+</p>
+<p align="center">
+<a href="https://pulso.quovra.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-pulso-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-pulso-light.svg"><img src="assets/card-pulso-dark.svg" width="49.4%" alt="Pulso: timing arcade game with meta-progression, web and Android."></picture></a>
+<a href="https://apify.com/sebastian_elustondo"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-apify-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/card-apify-light.svg"><img src="assets/card-apify-dark.svg" width="49.4%" alt="Apify Actors: BCRA credit check and demo website generator, 2 Actors published on Apify Store, pay per event."></picture></a>
+</p>
 
 
-### Stack
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/placard-stack-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/placard-stack-light.svg"><img src="assets/placard-stack-dark.svg" width="100%" alt="Stack: what the building is made of"></picture>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
@@ -57,6 +55,4 @@ Each card is a window from the building above: a product I designed, built and s
 
 </details>
 
-### Now
-
-- Open to **remote full-time roles** (Argentina, GMT-3, full overlap with US hours).
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/sign-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/sign-light.svg"><img src="assets/sign-dark.svg" width="100%" alt="Now: open to remote full-time roles. Argentina, GMT-3, full overlap with US hours."></picture>

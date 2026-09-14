@@ -36,7 +36,7 @@
         "Freelance rate calculator for Argentina.",
         "Live USD/ARS rate, client-side only, no build step."
       ],
-      "fact": "24 PRs merged · tests, lint, Lighthouse in CI",
+      "fact": "tests, lint and Lighthouse on every PR",
       "url": "https://cobro.quovra.com",
       "host": "cobro.quovra.com",
       "repo": "https://github.com/SebastianElustondo/cuanto-cobro"

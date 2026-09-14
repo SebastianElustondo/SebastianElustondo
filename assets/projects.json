@@ -1,0 +1,84 @@
+{
+  "asof": "2026-09-14",
+  "projects": [
+    {
+      "slug": "quovra",
+      "window": "quovra",
+      "name": "Quovra Platform",
+      "kind": "SaaS · multi-tenant",
+      "line": [
+        "Bookings, reviews, store with stock and payments,",
+        "reports, site builder and classes for local businesses."
+      ],
+      "fact": "6 modules live · tenant isolation in the DB (RLS)",
+      "url": "https://portal.quovra.com",
+      "host": "portal.quovra.com"
+    },
+    {
+      "slug": "reachr",
+      "window": "reachr",
+      "name": "Reachr",
+      "kind": "CRM · leads and collections",
+      "line": [
+        "Pipeline for selling websites to local businesses.",
+        "Drag a deal to Paid and the WhatsApp reminder writes itself."
+      ],
+      "fact": "9 phases in prod · paused until outreach says go",
+      "url": "https://reachrapp.com",
+      "host": "reachrapp.com"
+    },
+    {
+      "slug": "cobro",
+      "window": "cobro",
+      "name": "¿Cuánto cobro?",
+      "kind": "tool · public repo",
+      "line": [
+        "Freelance rate calculator for Argentina.",
+        "Live USD/ARS rate, client-side only, no build step."
+      ],
+      "fact": "24 PRs merged · tests, lint, Lighthouse in CI",
+      "url": "https://cobro.quovra.com",
+      "host": "cobro.quovra.com",
+      "repo": "https://github.com/SebastianElustondo/cuanto-cobro"
+    },
+    {
+      "slug": "trazoloco",
+      "window": "trazo",
+      "name": "TrazoLoco",
+      "kind": "game · multiplayer",
+      "line": [
+        "Draw-and-guess in Spanish with real-time rooms.",
+        "Node + WebSockets on Render."
+      ],
+      "fact": "~250 players/mo · 29% arrive via AI assistants",
+      "url": "https://trazoloco.quovra.com",
+      "host": "trazoloco.quovra.com"
+    },
+    {
+      "slug": "pulso",
+      "window": "pulso",
+      "name": "Pulso",
+      "kind": "game · arcade",
+      "line": [
+        "One tap, one neon ring. Economy, shop, modes and",
+        "prestige on top of a 3-second loop."
+      ],
+      "fact": "4 progression phases shipped · web + Android",
+      "url": "https://pulso.quovra.com",
+      "host": "pulso.quovra.com"
+    },
+    {
+      "slug": "apify",
+      "window": "apify",
+      "name": "Apify Actors",
+      "kind": "data · pay per event",
+      "line": [
+        "BCRA credit check on the official API, and a demo-site",
+        "generator for businesses that have no website yet."
+      ],
+      "fact": "2 Actors published on Apify Store",
+      "url": "https://apify.com/sebastian_elustondo",
+      "host": "apify.com/sebastian_elustondo"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="176" viewBox="0 0 520 176" role="img" aria-label="Pulso: One tap, one neon ring. Economy, shop, modes and prestige on top of a 3-second loop. 4 progression phases shipped · web + Android">
+  <style>
+    .glow{animation:breathe 6s ease-in-out infinite}
+    .win-trazo .glow{animation-delay:-1.3s}.win-quovra .glow{animation-delay:-2.7s}
+    .win-reachr .glow{animation-delay:-4.1s}.win-cobro .glow{animation-delay:-5.2s}
+    .star{animation:twinkle 4s ease-in-out infinite}
+    .star:nth-child(3n){animation-delay:-1.4s}.star:nth-child(3n+1){animation-delay:-2.6s}
+    @keyframes breathe{0%,100%{opacity:var(--o,.55)}50%{opacity:calc(var(--o,.55) * .55)}}
+    @keyframes twinkle{0%,100%{opacity:.9}50%{opacity:.25}}
+    @media (prefers-reduced-motion:reduce){.glow,.star{animation:none}}
+    </style>
+  <defs>
+    <linearGradient id="cdpul-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A0E22"/><stop offset=".62" stop-color="#1D1A40"/><stop offset="1" stop-color="#3E2C3C"/>
+    </linearGradient>
+    <linearGradient id="cdpul-plaster" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2B2637"/><stop offset="1" stop-color="#241F30"/>
+    </linearGradient>
+    <filter id="cdpul-blur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="cdpul-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <rect x="1" y="1" width="518" height="174" rx="8" fill="url(#cdpul-plaster)" stroke="#181423" stroke-width="2"/>
+  <rect x="1" y="162" width="518" height="12" rx="6" fill="#2A2735"/>
+  <rect x="1" y="162" width="518" height="2" fill="#4A4458"/>
+  
+  <g class="win win-pulso">
+    <rect x="20" y="16" width="86" height="108" rx="6" fill="#39ff8f" opacity="0.55" style="--o:0.55" filter="url(#cdpul-blur)" class="glow"/>
+    <rect x="30" y="26" width="66" height="88" fill="#06090a" stroke="#15111F" stroke-width="3"/>
+    <line x1="63.0" y1="26" x2="63.0" y2="114" stroke="#15111F" stroke-width="1.5" opacity=".35"/>
+    <line x1="30" y1="62.96" x2="96" y2="62.96" stroke="#15111F" stroke-width="1.5" opacity=".35"/>
+    <svg x="36.6" y="54.2" width="52.8" height="52.8" viewBox="0 0 80 60"><rect x="12" y="8" width="56" height="34" rx="2" fill="none" stroke="#39ff8f" stroke-width="3"/><polyline points="18,26 30,26 35,16 41,36 46,22 50,26 62,26" fill="none" stroke="#39ff8f" stroke-width="2.5" stroke-linejoin="round"/><rect x="34" y="44" width="12" height="6" fill="#39ff8f"/><rect x="24" y="50" width="32" height="3" fill="#39ff8f"/></svg>
+    <rect x="23" y="117" width="80" height="6" fill="#3A3348"/>
+  </g>
+  <text x="128" y="50" font-family="'Young Serif', Georgia, 'Times New Roman', serif" font-size="24" fill="#F1E9DC">Pulso</text>
+  <text x="128" y="70" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#AEA6BE" letter-spacing=".4">GAME · ARCADE</text>
+  <text x="128" y="98" font-family="'Atkinson Hyperlegible', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" fill="#F1E9DC"><tspan x="128" dy="0">One tap, one neon ring. Economy, shop, modes and</tspan><tspan x="128" dy="19">prestige on top of a 3-second loop.</tspan></text>
+  <text x="128" y="144" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="600" fill="#F2B45C">4 progression phases shipped · web + Android</text>
+  <text x="502" y="30" text-anchor="end" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#AEA6BE">pulso.quovra.com</text>
+</svg>

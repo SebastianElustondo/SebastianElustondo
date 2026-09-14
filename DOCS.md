@@ -38,6 +38,26 @@ Orden de mundos: pulso (CRT negro) → trazo (papel) → quovra (dark cálido) �
 Modo CV (`html.cv`, botón "I'd rather just read it"): oculta los juguetes y muestra todos los facts.
 Sin JS todo el contenido es visible. `prefers-reduced-motion` respetado en todos.
 
+## README del perfil (banner, tarjetas, stats)
+
+El README de este repo es el perfil público de GitHub. Sus imágenes son SVG generados con scripts
+stdlib en `scripts/`, con la misma identidad Night Shift del sitio (paletas `night` y `day` de
+`src/spine.js`, glifos de las ventanas leídos de ahí mismo):
+
+```
+scripts/nightshift.py   paletas, glifos, helpers SVG compartidos
+scripts/banner.py       assets/banner-{dark,light}.svg   (el edificio + presentación)
+scripts/cards.py        assets/card-<slug>-{dark,light}.svg desde assets/projects.json
+scripts/stats.py        assets/stats-{dark,light}.svg   (contribuciones como ventanas + lenguajes)
+```
+
+Regenerar: `cd scripts && python3 banner.py && python3 cards.py && python3 stats.py`.
+`stats.py` usa la API GraphQL con `STATS_TOKEN`/`GITHUB_TOKEN` o `gh auth token`. El workflow
+`.github/workflows/stats.yml` la redibuja los lunes solo si existe el secret `STATS_TOKEN` (PAT
+clásico con `repo` + `read:user`, para que cuenten los repos privados); sin el secret no toca nada.
+Los números de las tarjetas se mantienen a mano en `assets/projects.json` (campo `asof`).
+Nivelate quedó como placa "retired" en el bench (la PWA se dio de baja el 2026-09-08).
+
 ## Deploy
 
 **ONLINE en https://sebastian.quovra.com** (Cloudflare Pages, proyecto `sebastian-elustondo`,

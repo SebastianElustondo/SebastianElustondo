@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="176" viewBox="0 0 520 176" role="img" aria-label="Apify Actors: BCRA credit check on the official API, and a demo-site generator for businesses that have no website yet. 2 Actors published on Apify Store">
+  <style>
+    .glow{animation:breathe 6s ease-in-out infinite}
+    .win-trazo .glow{animation-delay:-1.3s}.win-quovra .glow{animation-delay:-2.7s}
+    .win-reachr .glow{animation-delay:-4.1s}.win-cobro .glow{animation-delay:-5.2s}
+    .star{animation:twinkle 4s ease-in-out infinite}
+    .star:nth-child(3n){animation-delay:-1.4s}.star:nth-child(3n+1){animation-delay:-2.6s}
+    @keyframes breathe{0%,100%{opacity:var(--o,.55)}50%{opacity:calc(var(--o,.55) * .55)}}
+    @keyframes twinkle{0%,100%{opacity:.9}50%{opacity:.25}}
+    @media (prefers-reduced-motion:reduce){.glow,.star{animation:none}}
+    </style>
+  <defs>
+    <linearGradient id="clapi-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6FA8DC"/><stop offset=".62" stop-color="#BDD6EA"/><stop offset="1" stop-color="#E6ECF0"/>
+    </linearGradient>
+    <linearGradient id="clapi-plaster" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#DCD2C4"/><stop offset="1" stop-color="#C6BAAA"/>
+    </linearGradient>
+    <filter id="clapi-blur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="clapi-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <rect x="1" y="1" width="518" height="174" rx="8" fill="url(#clapi-plaster)" stroke="#9E9081" stroke-width="2"/>
+  <rect x="1" y="162" width="518" height="12" rx="6" fill="#B9B0A3"/>
+  <rect x="1" y="162" width="518" height="2" fill="#8B8073"/>
+  
+  <g class="win win-apify">
+    <rect x="20" y="16" width="86" height="108" rx="6" fill="#8FC6FF" opacity="0.25" style="--o:0.25" filter="url(#clapi-blur)" class="glow"/>
+    <rect x="30" y="26" width="66" height="88" fill="#142033" stroke="#15111F" stroke-width="3"/>
+    <line x1="63.0" y1="26" x2="63.0" y2="114" stroke="#15111F" stroke-width="1.5" opacity=".35"/>
+    <line x1="30" y1="62.96" x2="96" y2="62.96" stroke="#15111F" stroke-width="1.5" opacity=".35"/>
+    <svg x="36.6" y="54.2" width="52.8" height="52.8" viewBox="0 0 80 60"><rect x="14" y="12" width="52" height="36" rx="3" fill="#1B2B44" stroke="#BFE0FF" stroke-width="2.5"/><rect x="20" y="18" width="16" height="10" fill="#8FC6FF"/><rect x="40" y="18" width="20" height="3" fill="#BFE0FF" opacity=".7"/><rect x="40" y="25" width="14" height="3" fill="#BFE0FF" opacity=".45"/><rect x="20" y="33" width="40" height="3" fill="#BFE0FF" opacity=".45"/><rect x="20" y="39" width="28" height="3" fill="#BFE0FF" opacity=".45"/><circle cx="60" cy="42" r="3.5" fill="#39ff8f"/><rect x="30" y="50" width="20" height="4" fill="#BFE0FF"/></svg>
+    <rect x="23" y="117" width="80" height="6" fill="#3A3348"/>
+  </g>
+  <text x="128" y="50" font-family="'Young Serif', Georgia, 'Times New Roman', serif" font-size="24" fill="#1E1A2A">Apify Actors</text>
+  <text x="128" y="70" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#5C5468" letter-spacing=".4">DATA · PAY PER EVENT</text>
+  <text x="128" y="98" font-family="'Atkinson Hyperlegible', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" fill="#1E1A2A"><tspan x="128" dy="0">BCRA credit check on the official API, and a demo-site</tspan><tspan x="128" dy="19">generator for businesses that have no website yet.</tspan></text>
+  <text x="128" y="144" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="600" fill="#7A4E14">2 Actors published on Apify Store</text>
+  <text x="502" y="30" text-anchor="end" font-family="'Azeret Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#5C5468">apify.com/sebastian_elustondo</text>
+</svg>
